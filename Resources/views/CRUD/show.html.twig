@@ -1,0 +1,43 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends 'SonataAdminBundle:CRUD:base_show.html.twig' %}
+
+{% block show %}
+    <div class="sonata-ba-view">
+        {{ sonata_block_render_event('sonata.admin.show.top', { 'admin': admin, 'object': object }) }}
+
+        {% for name, view_group in admin.showgroups %}
+            <table class="table table-bordered {% if view_group.collapsed == true %}collapsed-table{% endif %}">
+                {% if name %}
+                    <tr class="sonata-ba-view-title">
+                        <td colspan="2">
+                                {% if view_group.collapsed == true %}<span class="opener">{% endif %}
+                            {{ admin.trans(name) }}
+                                {% if view_group.collapsed == true %}</span>{% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+
+                {% for field_name in view_group.fields %}
+                    <tr class="sonata-ba-view-container">
+                        {% if elements[field_name] is defined %}
+                            {{ elements[field_name]|render_view_element(object) }}
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endfor %}
+
+        {{ sonata_block_render_event('sonata.admin.show.bottom', { 'admin': admin, 'object': object }) }}
+
+    </div>
+{% endblock %}

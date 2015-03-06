@@ -1,0 +1,66 @@
+{% block a2lix_translations_widget %}
+    {{ form_errors(form) }}
+    
+    <ul class="a2lix_translationsLocales_selector">
+        
+        {% set checkname = form.vars.full_name ~ '[enabled_locales]' %}
+        {% set checkid = checkname|replace({'[':'_', ']':'_'}) %}
+
+        {% for translationsFields in form %}
+            {% set locale = translationsFields.vars.name %}
+            {% set required = (locale in form.vars.required_locales) %}
+            
+            <li {% if app.request.locale == locale %}class="active"{% endif %}>
+                <label for="{{ checkid }}_{{ locale }}">{{ locale|capitalize }}</label>
+                <input name="{{ checkname }}[]" type="checkbox" value="{{ locale }}" id="{{ checkid }}_{{ locale }}"
+                       {% if (translationsFields.vars.value != null and translationsFields.vars.value.getToValidate()) or required  %} checked {% endif %}
+                       {% if required %}readonly="readonly" data-readonly="true" onclick="return false;"{% endif %}
+                       onchange="disableTranslation('{{ locale }}',this);"  /> 
+            </li>
+        {% endfor %}
+
+    </ul>
+
+    <div class="a2lix_translations tabbable">
+        <ul class="a2lix_translationsLocales nav nav-tabs">
+        {% for translationsFields in form %}
+            {% set locale = translationsFields.vars.name %}
+            {% set required = (locale in form.vars.required_locales) %}
+
+            <li class="{% if app.request.locale == locale %}active{% endif %}{% if (translationsFields.vars.value == null or not translationsFields.vars.value.getToValidate()) and not required %} removed{% endif %}" 
+                rel="{{ locale }}">
+                <a href="#{{ checkid }}_{{ locale }}_tab_pane" data-toggle="tab" data-target=".a2lix_translationsFields-{{ locale }}">
+                    {{ locale|capitalize }}
+                    {% if form.vars.default_locale == locale %}[Default]{% endif %}
+                    {% if required %}*{% endif %}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+
+        <div class="a2lix_translationsFields tab-content">
+ 
+        {% for translationsFields in form %}
+            {% set locale = translationsFields.vars.name %}
+            {% set required = (locale in form.vars.required_locales) %}
+            
+            <div id="{{ checkid }}_{{ locale }}_tab_pane" class="a2lix_translationsFields-{{ locale }} tab-pane 
+                {% if app.request.locale == locale %}active{% endif %}{% if (translationsFields.vars.value == null or not translationsFields.vars.value.getToValidate()) and not required %} removed{% endif %}" 
+                    rel="{{ locale }}">
+                     
+                {% set x = translationsFields.offsetUnset('createdBy') %}
+                {% set x = translationsFields.offsetUnset('updatedBy') %}
+                {% set x = translationsFields.offsetUnset('createdAt') %}
+                {% set x = translationsFields.offsetUnset('updatedAt') %}
+                     
+                {{ form_errors(translationsFields) }}
+                {{ form_widget(translationsFields) }}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block a2lix_translationsForms_widget %}
+    {{ block('a2lix_translations_widget') }}
+{% endblock %}

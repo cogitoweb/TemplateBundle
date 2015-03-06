@@ -1,0 +1,16 @@
+{% block user_block %}
+    
+    {{ locale_switcher() }}
+    
+    {% if app.user %}
+        <a href="{{ path('sonata_user_profile_show') }}">{{ app.user }}</a>
+
+        {% if is_granted('ROLE_PREVIOUS_ADMIN') and sonata_user.impersonating %}
+            <a href="{{ url(sonata_user.impersonating.route, sonata_user.impersonating.parameters| merge({'_switch_user': '_exit'})) }}">(exit)</a>
+        {% endif %}
+
+        - <a href="{{ url('fos_user_security_logout') }}" title="{{ 'user_block_logout'|trans({}, 'SonataUserBundle') }}">
+            <img src="{{ asset('bundles/Cogitowebtemplate/images/logout.png') }}" alt="{{ 'user_block_logout'|trans({}, 'SonataUserBundle') }}" />
+        </a>
+    {% endif %}
+{% endblock %}

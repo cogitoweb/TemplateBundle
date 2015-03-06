@@ -1,0 +1,18 @@
+parameters:
+    cogitoweb_template.datetime.class: Cogitoweb\TemplateBundle\Services\DateTimeService
+
+services:
+    
+    cogitoweb_template.datetime:
+        class: %cogitoweb_template.datetime.class%
+        arguments: [@logger]
+        
+    sonata.admin.orm.filter.type.insensitive_string:
+        class: Cogitoweb\TemplateBundle\Filter\CaseInsensitiveStringFilter
+        tags:
+            - { name: sonata.admin.filter.type, alias: doctrine_orm_istring }
+
+    sonata.admin.orm.filter.type.string:
+        class: Cogitoweb\TemplateBundle\Filter\CaseInsensitiveStringFilter
+        tags:
+            - { name: sonata.admin.filter.type, alias: doctrine_orm_string }

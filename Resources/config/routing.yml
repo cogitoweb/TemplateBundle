@@ -1,0 +1,3 @@
+cogitoweb_template_homepage:
+    pattern:  /
+    defaults: { _controller: CogitowebTemplateBundle:Default:index }

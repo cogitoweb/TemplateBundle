@@ -1,0 +1,67 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field%}
+    
+    <div class="a2lix_translations tabbable">
+        <ul class="a2lix_translationsLocales nav nav-tabs">
+        {% for key, val in value %}
+            <li class="{% if app.request.locale == key %}active{% endif %}" rel="{{ key }}">
+                <a href="#" data-toggle="tab" data-target=".a2lix_translationsFields-{{ key }}">
+                    {{ key|capitalize }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+
+        <div class="a2lix_translationsFields tab-content">
+ 
+        {% for key, val in value %}
+            
+            <div class="a2lix_translationsFields-{{ key }} tab-pane form-horizontal
+                {% if app.request.locale == key %}active{% endif %} rel="{{ key }}">
+                
+                    {% if field_description.options.properties is defined %}
+                        
+                        {% for prop in field_description.options.properties %}
+
+                            {% if value[key] is defined %}
+                        
+                                <div class="control-group ">
+                                    
+                                    <label class="control-label">
+                                        {{ prop }}
+                                    </label>
+                                    
+                                    <div class="controls ">
+                                        <div class="col-lg-9">
+                                            {% if field_description.options.safe %}
+                                                {{ attribute(value[key], prop)|raw }}
+                                            {% else %}
+                                                {{ attribute(value[key], prop) }}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endif %}
+                                
+                        {% endfor %}
+                        
+                    {% endif %}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    
+{% endblock %}
