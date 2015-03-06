@@ -1,0 +1,10 @@
+{
+    "name": "cogitoweb/template-bundle",
+    "authors": [
+        {
+            "name": "zzx",
+            "email": "paolo.cazzitti@cogitoweb.it"
+        }
+    ],
+    "require": {}
+}
