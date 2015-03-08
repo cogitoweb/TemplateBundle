@@ -8,7 +8,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "A2lix\\TranslationFormBundle": ""
+            "Cogitoweb\\TemplateBundle": ""
         }
     },
     "require": {
