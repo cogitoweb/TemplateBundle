@@ -6,5 +6,12 @@
             "email": "paolo.cazzitti@cogitoweb.it"
         }
     ],
-    "require": {}
+    "autoload": {
+        "psr-0": {
+            "A2lix\\TranslationFormBundle": ""
+        }
+    },
+    "require": {
+        "symfony/symfony": "~2.3"
+    }
 }
