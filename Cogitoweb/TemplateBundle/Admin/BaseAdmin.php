@@ -139,13 +139,13 @@ abstract class BaseAdmin extends Admin {
 
     /**
      * 
-     * @return \Application\ET\CRUDBundle\Services\OptimizeQuery $optimizeQueryService
+     * @return object
      */
-    public function getOptimizeQueryService() {
+    public function getOptimizeQueryService($service_name) {
 
         if ($this->optimizeQueryService === null) {
 
-            $this->optimizeQueryService = $this->getConfigurationPool()->getContainer()->get('application_etcrud.service.optimize_query');
+            $this->optimizeQueryService = $this->getConfigurationPool()->getContainer()->get($service_name);
         }
 
         return $this->optimizeQueryService;
