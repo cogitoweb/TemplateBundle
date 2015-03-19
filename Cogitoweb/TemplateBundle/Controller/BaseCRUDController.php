@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Controller\CRUDController;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Patch;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -61,6 +62,7 @@ class BaseCRUDController extends CRUDController
      *
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      *
+     * @View(serializerGroups={"adminlist","Default"})
      * @return Response
      */
     public function listAction()
@@ -88,6 +90,7 @@ class BaseCRUDController extends CRUDController
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      *
+     * @View(serializerGroups={"adminshow","Default"})
      * @return Response
      */
     public function showAction($ix = null)
@@ -120,6 +123,7 @@ class BaseCRUDController extends CRUDController
      *  "depositperc":"0","enabled":"1","translations":{"enabled_locales":["it"],"it":{"name":"aa"}}}
      * 
      * @Post
+     * @View(serializerGroups={"adminshow","Default"})
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      * @return Response
      */
@@ -170,6 +174,7 @@ class BaseCRUDController extends CRUDController
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      *
+     * @View(serializerGroups={"adminshow","Default"})
      * @return Response
      */
     public function editAction($ix = null)
