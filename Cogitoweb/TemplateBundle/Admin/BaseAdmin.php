@@ -16,6 +16,16 @@ abstract class BaseAdmin extends Admin {
     }
     
     /**
+     * The underlaying object is new? 
+     *
+     * @return bool
+     */
+    public function isNew() 
+    {
+        return ($this->getRoot()->getSubject() && $this->getRoot()->getSubject()->getId()) ? false : true;
+    }
+    
+    /**
      * 
      * @return string
      */
