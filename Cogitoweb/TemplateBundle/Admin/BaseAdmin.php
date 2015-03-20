@@ -121,6 +121,16 @@ abstract class BaseAdmin extends Admin {
         parent::__construct($code, $class, $baseControllerName);
     }
 
+    
+    /**
+     * @param string $code
+     * @return stdClass
+     */
+    public function getService($serviceName) {
+
+        return $this->getConfigurationPool()->getContainer()->get($serviceName);
+    }
+    
     /**
      * 
      * @return \Cogitoweb\TemplateBundle\Services\DateTimeService $dateTimeService
@@ -179,6 +189,8 @@ abstract class BaseAdmin extends Admin {
                 ->add('updatedBy')
         ;
     }
+    
+    
 
     /**
      * Generates the breadcrumbs NO EDIT
