@@ -283,6 +283,7 @@ div.sonata-ba-form-error ul {
 
 .sonata-bc .row-fluid div.no-space {
   margin-left: 0 !important;
+  clear:left;
 }
 
 .sonata-ba-form .delete-check input[type=checkbox] {
