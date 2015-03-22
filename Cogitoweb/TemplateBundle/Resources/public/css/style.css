@@ -165,6 +165,12 @@ div.sonata-ba-form-error ul {
 .sonata-bc .table th, .sonata-bc .table td {
 	vertical-align: middle;
 }
+.sonata-bc .navbar-text.pull-right,
+.sonata-bc .navbar-text.pull-right a {
+	color: #00cccc;
+}
+
+
 
 /* table nested */
 
@@ -262,6 +268,18 @@ div.sonata-ba-form-error ul {
 
 
 /* paolo */
+
+.sonata-bc .clear-both {
+    clear:both;
+}
+
+.sonata-bc .clear-left {
+    clear:left;
+}
+
+.sonata-bc .clear-right {
+    clear:right;
+}
 
 .sonata-ba-form .delete-check input[type=checkbox] {
 	display: none;
