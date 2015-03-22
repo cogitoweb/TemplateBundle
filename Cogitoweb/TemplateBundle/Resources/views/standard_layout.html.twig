@@ -3,17 +3,15 @@
 {% block stylesheets %}
     {% stylesheets 
         'bundles/sonatajquery/themes/flick/jquery-ui-1.8.16.custom.css' 
-        'bundles/Cogitowebtemplate/bootstrap/css/bootstrap.css' 
-        'bundles/Cogitowebtemplate/bootstrap/css/bootstrap-responsive.css' 
+        'bundles/cogitowebtemplate/bootstrap/css/bootstrap.css' 
+        'bundles/cogitowebtemplate/bootstrap/css/bootstrap-responsive.css' 
         'bundles/sonataadmin/x-editable/css/bootstrap-editable.css' 
-        'bundles/Cogitowebtemplate/js/datetimepicker/datetimepicker.css' 
-        'bundles/Cogitowebtemplate/js/select2/select2.css' 
+        'bundles/cogitowebtemplate/js/datetimepicker/datetimepicker.css' 
+        'bundles/cogitowebtemplate/js/select2/select2.css' 
         'bundles/sonataadmin/css/layout.css' 
         'bundles/sonataadmin/css/colors.css' 
-
         'bundles/adesignscalendar/css/fullcalendar/fullcalendar.css'
-
-        'bundles/Cogitowebtemplate/css/style.css' 
+        'bundles/cogitowebtemplate/css/style.css'  
         filter='cssrewrite' filter='?uglifycss' output='css/compiledcss' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -232,8 +230,8 @@
 
     {% block footer %}
         <span class="fixed-footer-logo">
-            <a href="http://it.etwayonline.com/"  target="_blank">
-                <img src="{{ asset(admin_pool.titlelogo) }}"  alt="{{ admin_pool.title }}">
+            <a href="http://www.cogitoweb.it/"  target="_blank">
+                Powered by Cogito
             </a>
         </span>
     {% endblock %}
