@@ -16,8 +16,14 @@ file that was distributed with this source code.
         {{ sonata_block_render_event('sonata.admin.show.top', { 'admin': admin, 'object': object }) }}
 
         {% for name, view_group in admin.showgroups %}
+            
+            {% if view_group.css_column is defined %}
+                <div class="{{ view_group.css_column }}">
+            {% endif %}
+            
             <table class="table table-bordered 
-                {% if view_group.css_class is defined %}{{ view_group.css_class }}{% else %}clear-both{% endif %}
+                {% if view_group.css_column is not defined %}clear-both{% endif %}
+                {% if view_group.css_table is defined %}{{ view_group.css_table }}{% endif %}
                 {% if view_group.collapsed == true %}collapsed-table{% endif %}">
                 {% if name %}
                     <tr class="sonata-ba-view-title">
@@ -37,6 +43,11 @@ file that was distributed with this source code.
                     </tr>
                 {% endfor %}
             </table>
+            
+            {% if view_group.css_column is defined %}
+                </div>
+            {% endif %}
+            
         {% endfor %}
 
         {{ sonata_block_render_event('sonata.admin.show.bottom', { 'admin': admin, 'object': object }) }}

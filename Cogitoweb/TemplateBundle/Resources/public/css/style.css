@@ -281,6 +281,10 @@ div.sonata-ba-form-error ul {
     clear:right;
 }
 
+.sonata-bc .row-fluid div.no-space {
+  margin-left: 0 !important;
+}
+
 .sonata-ba-form .delete-check input[type=checkbox] {
 	display: none;
 }
@@ -470,12 +474,12 @@ div.select2-drop ul {
     padding:10px;
 }
 
-@media (max-width: 1340px) { 
+@media (max-width: 1030px) { 
     .navbar-inner .nav .homelink {
         display:none !important;
     }
     .navbar-inner .nav li {
-        width: 100px;
+        width: 100%;
     }
 }
 

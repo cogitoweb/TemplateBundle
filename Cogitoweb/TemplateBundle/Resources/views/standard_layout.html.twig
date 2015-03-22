@@ -11,10 +11,12 @@
         'bundles/sonataadmin/css/layout.css' 
         'bundles/sonataadmin/css/colors.css' 
         'bundles/adesignscalendar/css/fullcalendar/fullcalendar.css'
-        'bundles/cogitowebtemplate/css/style.css'  
+        'bundles/cogitowebtemplate/css/style.css' 
         filter='cssrewrite' filter='?uglifycss' output='css/compiledcss' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
+    
+    {% include 'CogitowebTemplateBundle:Override:head_css.html.twig' %}
 {% endblock %}
 
 {% block javascripts %}
@@ -40,9 +42,7 @@
         '@SonataAdminBundle/Resources/public/jquery/jquery.form.js' 
         '@SonataAdminBundle/Resources/public/jquery/jquery.confirmExit.js' 
         '@SonataAdminBundle/Resources/public/base.js' 
-
         '@CogitowebTemplateBundle/Resources/public/js/fullcalendar/fullcalendar.min.js'
-
         '@CogitowebTemplateBundle/Resources/public/js/support.js'
         filter='?uglifyjs2' output='js/compiledjs' %}
         <script src="{{ asset_url }}"></script>
@@ -52,6 +52,8 @@
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
    
+    {% include 'CogitowebTemplateBundle:Override:head_js.html.twig' %}
+    
 {% endblock %}
     
 
