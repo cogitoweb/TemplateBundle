@@ -377,8 +377,17 @@ abstract class BaseAdmin extends Admin {
         if (!$this->isChild()) {
             throw new \Exception('non sono un figlio');
         }
+        
+        $id_param = $this->getParent()->getIdParameter();
+        if($this->request->isXmlHttpRequest())
+        {
+            $id_param = 'objectId';
+            
+            $this->request->attributes->set($this->getParent()->getIdParameter(), 
+                    $this->request->get($id_param));
+        }
 
-        return $this->getParent()->getObject($this->request->get($this->getParent()->getIdParameter()));
+        return $this->getParent()->getObject($this->request->get($id_param));
     }
 
     /**
