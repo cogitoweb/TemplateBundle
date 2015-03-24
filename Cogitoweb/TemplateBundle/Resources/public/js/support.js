@@ -196,3 +196,10 @@ jQuery(document).on('sonata-admin-append-form-element', function(e) {
 $(window).resize(function(){
     resizeActionButtons();
 });
+
+jQuery(document).on({
+    ajaxStart: function() { $("body").addClass("loading"); },
+    ajaxStop: function() { $("body").removeClass("loading"); },
+    
+    submit: function() { $("body").addClass("loading"); }    
+});
