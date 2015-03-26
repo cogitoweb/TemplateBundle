@@ -1,13 +1,13 @@
 
 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-    <img src="{{ asset('bundles/Cogitowebtemplate/images/flags/' ~ current_locale ~ '.png') }}" alt="{{ current_locale }}" />
+    <img src="{{ asset('bundles/cogitowebtemplate/images/flags/' ~ current_locale ~ '.png') }}" alt="{{ current_locale }}" />
 </a> - 
 
 <ul class="dropdown-menu locale_chooser">
     {% for locale in locales %}
         <li{% if current_locale == locale.locale %} class="locale_current"{% endif %}>
             <a href="{{ locale.link }}" title="{{ locale.locale_current_language }}">
-                <img src="{{ asset('bundles/Cogitowebtemplate/images/flags/' ~ locale.locale ~ '.png') }}" alt="{{ locale.locale }}" />
+                <img src="{{ asset('bundles/cogitowebtemplate/images/flags/' ~ locale.locale ~ '.png') }}" alt="{{ locale.locale }}" />
                 {{ locale.locale_current_language }}</a>
         </li>
     {% endfor %}
