@@ -5,7 +5,7 @@ namespace Cogitoweb\TemplateBundle\Query\Postgresql;
 use Doctrine\ORM\Query\Lexer;
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
 
-class ANY extends FunctionNode {
+class Any extends FunctionNode {
 
     public $field;
 
