@@ -232,6 +232,15 @@ div.sonata-ba-form-error ul {
 	color: #0088CC;
 }
 
+@media (max-width: 767px) { 
+    .sonata-bc legend.filter_legend {
+        width: 100%;
+    }
+}
+.sonata-ba-filter .filter_container > div {
+    margin-bottom:10px;
+} 
+
 .filter-date-range {
 	padding-left: 18px;
 	border-left: 1px solid #CCCCCC;
