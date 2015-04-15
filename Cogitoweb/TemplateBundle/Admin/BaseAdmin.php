@@ -10,6 +10,8 @@ use Sonata\CoreBundle\Model\Metadata;
 use Sonata\AdminBundle\Route\RouteCollection;
 
 abstract class BaseAdmin extends Admin {
+	const PHP_ARRAY_FORMAT = "php";
+	const POSTGRES_ARRAY_FORMAT = "postgres";
 
     public function getInstance() {
         return $this;
@@ -632,5 +634,23 @@ abstract class BaseAdmin extends Admin {
         return $url;
     }
     
-    
+    /**
+	 * @param \Doctrine\Common\Collections\ArrayCollection $arrayCollection
+	 * @param string $format
+	 * @return 
+	 */
+	public function getCollectionIds(\Doctrine\Common\Collections\Collection $collection, $format = null) {
+		$ids = array();
+		foreach ($collection as $i)
+			$ids[] = $i->getId();
+		
+		switch ($format) {
+			case self::POSTGRES_ARRAY_FORMAT:
+				return sprintf("{%s}", implode(',', $ids));
+			case self::PHP_ARRAY_FORMAT:
+				
+			default:
+				return $ids;
+		}
+	}
 }
