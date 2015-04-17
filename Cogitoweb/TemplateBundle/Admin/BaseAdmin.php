@@ -343,10 +343,36 @@ abstract class BaseAdmin extends Admin {
         // 2z ->
         // aggiunto metodo da sovrascrivere all'occorrenza
         $this->configureChildFilter($mapper);
+        
+        // 2z ->
+        // aggiunto metodo per additional data
+        $this->addExtraQueryResults();
 
         foreach ($this->getExtensions() as $extension) {
             $extension->configureDatagridFilters($mapper);
         }
+    }
+    
+    /**
+     * Privata con controllo se la datagrid implementa
+     * 
+     */
+    private function addExtraQueryResults() {
+        
+        if(method_exists($this->datagrid, 'setAdditionalData')) {
+            
+            $this->datagrid->setAdditionalData($this->addQueryResults());
+            
+        }
+    }
+    
+    /**
+     * Vuoto per implementazioni
+     * 
+     */
+    public function addQueryResults() {
+        
+        return null;
     }
 
     /**
@@ -635,14 +661,21 @@ abstract class BaseAdmin extends Admin {
     }
     
     /**
-	 * @param \Doctrine\Common\Collections\ArrayCollection $arrayCollection
+	 * @param Traversable $collection
 	 * @param string $format
 	 * @return 
 	 */
-	public function getCollectionIds(\Doctrine\Common\Collections\Collection $collection, $format = null) {
+	public function getCollectionIds($collection, $format = null) {
 		$ids = array();
 		foreach ($collection as $i)
-			$ids[] = $i->getId();
+        {
+            if(is_object($i)) {
+                $ids[] = $i->getId();
+            }
+            else if(is_array($i) && isset($i['id'])) {
+                $ids[] = $i['id'];
+            }
+        }
 		
 		switch ($format) {
 			case self::POSTGRES_ARRAY_FORMAT:
