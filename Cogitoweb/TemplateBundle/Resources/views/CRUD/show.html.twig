@@ -25,7 +25,7 @@ file that was distributed with this source code.
                 {% if view_group.css_column is not defined %}clear-both{% endif %}
                 {% if view_group.css_table is defined %}{{ view_group.css_table }}{% endif %}
                 {% if view_group.collapsed == true %}collapsed-table{% endif %}">
-                {% if name and name != '' %}
+                {% if name and name != '-' %}
                     <tr class="sonata-ba-view-title">
                         <td colspan="2">
                                 {% if view_group.collapsed == true %}<span class="opener">{% endif %}
