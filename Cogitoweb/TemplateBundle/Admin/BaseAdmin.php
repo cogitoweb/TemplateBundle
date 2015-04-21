@@ -9,6 +9,8 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\CoreBundle\Model\Metadata;
 use Sonata\AdminBundle\Route\RouteCollection;
 
+use Doctrine\Common\Util\Inflector as Inflector;
+
 abstract class BaseAdmin extends Admin {
 	const PHP_ARRAY_FORMAT = "php";
 	const POSTGRES_ARRAY_FORMAT = "postgres";
@@ -686,4 +688,42 @@ abstract class BaseAdmin extends Admin {
 				return $ids;
 		}
 	}
+    
+    /**
+     * Inietta le proprietà aggiuntive se addQueryResults definita
+     * 
+     * @param integer $id
+     */
+    public function getObject($id) {
+        $object = parent::getObject($id);
+        
+        $funct = $this->addQueryResults();
+        
+        if($funct)
+        {
+            // chiamo la closure
+            $res = $funct(array(array('id' => $object->getId())));
+
+            if(count($res)) {
+                
+                $d = $res[0];
+                
+                // se match id 
+                if(isset($d['id']) && method_exists($object, 'getId') && $d['id'] == $object->getId()) {
+
+                    foreach($d as $k => $v) {
+
+                        // provo a settare se esiste
+                        $m = Inflector::camelize('set_'.$k);
+
+                        if(method_exists($object, $m)) {
+                            $object->$m($v);
+                        }
+                    }
+                }
+            }
+        }
+        
+        return $object;
+    }
 }
