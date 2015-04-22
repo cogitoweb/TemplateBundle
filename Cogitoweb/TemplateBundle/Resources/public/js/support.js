@@ -74,17 +74,6 @@ function resizeActionButtons() {
         }
     }
     
-    // aggiusto le info
-    $('.sonata-bc .help-icon').each(function(){
-        
-        var me = $(this);
-        var prev = me.prevAll('div.field-container');
-        if(prev.length > 0 && prev.height() > 20) {
-            
-            //console.log($(this).attr('title'));
-            me.css('margin-top', '-' + prev.height() + 'px');
-        }
-    });
 }
 
 function disableTranslation(locale, el) {
@@ -175,6 +164,9 @@ $(document).ready(function() {
         
         // a tutti i  submit attacco evento che 
         adjustSelect2Submit();
+        
+        // tooltip
+        $('.tooltip-cgt').tooltip();
         
 });
 

@@ -465,9 +465,6 @@ div.select2-drop ul {
 .sonata-bc .help-block{
   display:inline-block;
 }
-.help-icon{
-  margin-left: 8px;
-}
 .sonata-bc .tooltip-inner {
   line-height: 1em;
   text-align: left !important;
@@ -503,8 +500,12 @@ div.select2-drop ul {
 }
 .help-icon {
     float: right;
-    margin-right: 20%;
 }
+.form-group .help-icon {
+    float: left;
+    margin: 1px 0 0 -45px;
+}
+
 .ui-dialog .ui-dialog-content{
   padding: 0.5em;
 }
