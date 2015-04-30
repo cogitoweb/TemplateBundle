@@ -205,6 +205,23 @@ abstract class BaseAdmin extends Admin {
     }
     
     
+    /**
+     * {@inheritdoc}
+     */
+    public function removeShowGroup($key)
+    {
+        $showg = $this->getShowGroups();
+        
+        if($showg && is_array($showg) && isset($showg[$key])) {
+            unset($showg[$key]);
+            
+            $this->setShowGroups($showg);
+        }
+        
+        
+    }
+    
+    
 
     /**
      * Generates the breadcrumbs NO EDIT
