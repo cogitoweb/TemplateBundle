@@ -684,7 +684,7 @@ abstract class BaseAdmin extends Admin {
 	 * @param string $format
 	 * @return 
 	 */
-	public function getCollectionIds($collection, $format = null) {
+	public static function getCollectionIdsStatic($collection, $format = null) {
 		$ids = array();
 		foreach ($collection as $i)
         {
