@@ -680,7 +680,7 @@ abstract class BaseAdmin extends Admin {
     }
     
     /**
-	 * @param Traversable $collection
+	 * @param array $collection
 	 * @param string $format
 	 * @return 
 	 */
@@ -707,11 +707,11 @@ abstract class BaseAdmin extends Admin {
 	}
     
     /**
-	 * @param Traversable $collection
+	 * @param array $collection
 	 * @param string $format
 	 * @return 
 	 */  
-    public function getCollectionIds(\Doctrine\Common\Collections\Collection $collection, $format = null) {
+    public function getCollectionIds($collection, $format = null) {
         return self::getCollectionIdsStatic($collection, $format);
     }
     
