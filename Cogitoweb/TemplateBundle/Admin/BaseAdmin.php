@@ -707,6 +707,15 @@ abstract class BaseAdmin extends Admin {
 	}
     
     /**
+	 * @param Traversable $collection
+	 * @param string $format
+	 * @return 
+	 */  
+    public function getCollectionIds(\Doctrine\Common\Collections\Collection $collection, $format = null) {
+        return self::getCollectionIdsStatic($collection, $format);
+    }
+    
+    /**
      * Inietta le proprietà aggiuntive se addQueryResults definita
      * 
      * @param integer $id
