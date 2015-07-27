@@ -179,6 +179,8 @@ jQuery(document).on('sonata.add_element', function(e) {
     adjustSelect2Submit();
     
     initCalendars();
+	
+	jQuery(this).trigger('sonata-collection-item-added');
 });
 
 jQuery(document).on('sonata-admin-append-form-element', function(e) {
