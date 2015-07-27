@@ -39,7 +39,9 @@ function adjustDeleteRows() {
                 
                     _tr.hide();
                     _tr.find('input[type=checkbox][id$="_delete"]').prop('checked', true);
-                } 
+                }
+				
+				jQuery(this).trigger('sonata-collection-item-deleted');
             }
         }
         return false;
