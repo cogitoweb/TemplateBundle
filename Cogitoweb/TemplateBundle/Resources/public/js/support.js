@@ -41,7 +41,7 @@ function adjustDeleteRows() {
                     _tr.find('input[type=checkbox][id$="_delete"]').prop('checked', true);
                 }
 				
-				jQuery(this).trigger('sonata-collection-item-deleted');
+				jQuery(document).trigger('sonata-collection-item-deleted');
             }
         }
         return false;
@@ -180,7 +180,7 @@ jQuery(document).on('sonata.add_element', function(e) {
     
     initCalendars();
 	
-	jQuery(this).trigger('sonata-collection-item-added');
+	jQuery(document).trigger('sonata-collection-item-added');
 });
 
 jQuery(document).on('sonata-admin-append-form-element', function(e) {
