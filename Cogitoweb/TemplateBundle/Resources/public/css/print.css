@@ -1,0 +1,76 @@
+/* Remove unwanted elements */
+
+@page {size: 210mm 297mm; margin: 10mm 10mm 10mm 10mm;}
+thead {display: table-header-group;}
+
+.sonata-bc a[href]:after {
+    content: none;
+}
+
+html * {
+    font-size: .95em !important;
+}
+
+.sonata-bc .action-column, 
+.sonata-bc .sonata-actions, 
+.sonata-bc .sonata-ba-list-field-header-actions, 
+.sonata-bc .sonata-filter-form,
+.sonata-bc .nav-collapse,
+.sonata-bc .navbar .btn-navbar, 
+.sonata-bc .navbar {
+    display:none;
+}
+
+body.sonata-bc {
+    padding-top: 0px;
+}
+
+.sonata-bc .container-fluid {
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+.sonata-bc .breadcrumb-wrapper {
+    display:none;
+}
+
+.sonata-bc .breadcrumb {
+    padding: 4px 4px;
+}
+
+.sonata-bc .table-bordered thead tr th, .sonata-bc .table-bordered tbody tr td,
+.sonata-bc .table-bordered tbody tr th {
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+}
+
+.sonata-bc .table tbody + tbody {
+    border-top: 1px solid #dddddd;
+}
+.sonata-bc .row-fluid .span10 {
+    width:100%;
+}
+.fixed-footer-logo {
+    display:none;
+}
+
+.sonata-ba-list .table tbody:nth-of-type(2) tr:nth-of-type(2) {
+    display:none;
+}
+.sonata-ba-list .table tbody:nth-of-type(2) tr:nth-of-type(1) .per-page {
+    left:-5000px;
+    position:absolute;
+}
+.sonata-ba-list .table tbody:nth-of-type(2) tr:nth-of-type(1) .control-label {
+    display:none;
+}
+
+.sonata-ba-list .sonata-ba-list-field-header th {
+    background-color: #ccc !important;
+    font-weight: bold !important;
+}
+
+.sonata-bc .table th, .sonata-bc .table td {
+    padding: 4px;
+    line-height: 12px;
+}

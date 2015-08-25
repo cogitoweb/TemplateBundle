@@ -541,3 +541,7 @@ body.loading {
 body.loading .modal-loader {
     display: block;
 }
+
+.sonata-bc .white-icon {
+    background-image: url("../bundles/cogitowebtemplate/bootstrap/img/glyphicons-halflings-white.png");
+}
