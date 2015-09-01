@@ -154,6 +154,11 @@ class BaseCRUDController extends CRUDController
             if ($isFormValid) {
                 $this->admin->create($object);
 
+                if($this->getRequest()->query->get('reload'))
+                {
+                    $this->getDoctrine()->getManager()->refresh($object);
+                }
+                
                 return $object;
             }
             else 
@@ -208,6 +213,11 @@ class BaseCRUDController extends CRUDController
             // persist if the form was valid and if in preview mode the preview was approved
             if ($isFormValid) {
                 $this->admin->update($object);
+                
+                if($this->getRequest()->query->get('reload'))
+                {
+                    $this->getDoctrine()->getManager()->refresh($object);
+                }
 
                 return $object;
             }
