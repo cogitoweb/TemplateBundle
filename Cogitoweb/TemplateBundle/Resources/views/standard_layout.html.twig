@@ -70,6 +70,7 @@
 
                     {% block logo %}
                         <a href="{{ url('homepage') }}" class="brand">
+							<img src="{{ asset(admin_pool.titlelogo) }}"  alt="{{ admin_pool.title }}" />
                             {{ admin_pool.title }}
                         </a>
                     {% endblock %}
