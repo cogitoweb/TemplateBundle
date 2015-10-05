@@ -70,6 +70,7 @@
 
                     {% block logo %}
                         <a href="{{ url('homepage') }}" class="brand">
+							<img src="{{ asset(admin_pool.titlelogo) }}"  alt="{{ admin_pool.title }}" />
                             {{ admin_pool.title }}
                         </a>
                     {% endblock %}
@@ -129,85 +130,87 @@
                                 {% block top_bar_after_nav %} {% endblock %}
                             </ul>
                             
-                            <div class="btn-group">
-                                <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="icon-print white-icon"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="javascript:window.print()">
-                                            Stampa la pagina
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:printDiv();" id="printAllButton">
-                                            Stampa tutto
-                                        </a>
-                                        <script>
-                                        var print_all_url = '';
-                                        var reset_page_url = '';
-                                        function choosePrintActions() {
-                                            var page_url = document.location.href;
-                                            
-                                            if(page_url.indexOf('/list') < 0) {
-                                                $('#printAllButton').hide();
-                                            }
-                                            else {
-                                                page_url = page_url.replace(/\?filter\[_per_page\]=\d+|\&filter\[_per_page\]=\d+/gi, ""); 
-                                                
-                                                reset_page_url = page_url;
-                                                reset_page_url += (page_url.indexOf('?') < 0) ? '?' : '&';
-                                                reset_page_url += 'filter[_per_page]=25';
-           
-                                                print_all_url = reset_page_url + '00';
-                                            }
-                                        }
-                                        choosePrintActions();
-                                            
-                                        function printDiv() {
-                                            var disp_setting="toolbar=no,location=no,directories=no,menubar=no, scrollbars=no,width=600, height=825, left=100, top=25";
-                                             
-                                            var newWin = window.open(print_all_url, "Stampa tutto", disp_setting);
-                                            
-                                            
-                                            var trackprint = function(oldwin){
-                                                
-                                                
-                                                var beforePrint = function() {
-                                                };
+							{% if app.user %}
+								<div class="btn-group">
+									<a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
+										<i class="icon-print white-icon"></i>
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="javascript:window.print()">
+												Stampa la pagina
+											</a>
+										</li>
+										<li>
+											<a href="javascript:printDiv();" id="printAllButton">
+												Stampa tutto
+											</a>
+											<script>
+											var print_all_url = '';
+											var reset_page_url = '';
+											function choosePrintActions() {
+												var page_url = document.location.href;
+												
+												if(page_url.indexOf('/list') < 0) {
+													$('#printAllButton').hide();
+												}
+												else {
+													page_url = page_url.replace(/\?filter\[_per_page\]=\d+|\&filter\[_per_page\]=\d+/gi, ""); 
+													
+													reset_page_url = page_url;
+													reset_page_url += (page_url.indexOf('?') < 0) ? '?' : '&';
+													reset_page_url += 'filter[_per_page]=25';
+			   
+													print_all_url = reset_page_url + '00';
+												}
+											}
+											choosePrintActions();
+												
+											function printDiv() {
+												var disp_setting="toolbar=no,location=no,directories=no,menubar=no, scrollbars=no,width=600, height=825, left=100, top=25";
+												 
+												var newWin = window.open(print_all_url, "Stampa tutto", disp_setting);
+												
+												
+												var trackprint = function(oldwin){
+													
+													
+													var beforePrint = function() {
+													};
 
-                                                var afterPrint = function() {
-                                                    newWin.close();
-                                                    newWin.parent.location.href = reset_page_url;
-                                                };
+													var afterPrint = function() {
+														newWin.close();
+														newWin.parent.location.href = reset_page_url;
+													};
 
-                                                
-                                                if (newWin.matchMedia) {
-                                                    var mediaQueryList = newWin.matchMedia('print');
-                                                    mediaQueryList.addListener(function(mql) {
-                                                        if (mql.matches) {
-                                                            beforePrint();
-                                                        } else {
-                                                            afterPrint();
-                                                        }
-                                                    });
-                                                }
-                                                
-                                                newWin.onbeforeprint = beforePrint;
-                                                newWin.onafterprint = afterPrint;
-                                            };
+													
+													if (newWin.matchMedia) {
+														var mediaQueryList = newWin.matchMedia('print');
+														mediaQueryList.addListener(function(mql) {
+															if (mql.matches) {
+																beforePrint();
+															} else {
+																afterPrint();
+															}
+														});
+													}
+													
+													newWin.onbeforeprint = beforePrint;
+													newWin.onafterprint = afterPrint;
+												};
 
-                                            newWin[newWin.addEventListener ? 'addEventListener' : 'attachEvent'](
-                                                (newWin.attachEvent ? 'on' : '') + 'load', trackprint, false
-                                            );
+												newWin[newWin.addEventListener ? 'addEventListener' : 'attachEvent'](
+													(newWin.attachEvent ? 'on' : '') + 'load', trackprint, false
+												);
 
-                                            newWin.print();
-                                        }
-                                        
-                                        </script>
-                                    </li>
-                                </ul>
-                            </div>
+												newWin.print();
+											}
+											
+											</script>
+										</li>
+									</ul>
+								</div>
+							{% endif %}
 
                             {% block sonata_top_bar_search %}
                             {% endblock %}
