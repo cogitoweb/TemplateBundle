@@ -7,6 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sonata\AdminBundle\Exception\ModelManagerException;
 
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -229,47 +232,65 @@ class BaseCRUDController extends CRUDController
 
         return parent::editAction($ix);
     }
-    
-    /**
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException|\Symfony\Component\Security\Core\Exception\AccessDeniedException
-     *
-     * @param mixed $ix
-     *
-     * @return Response|RedirectResponse
-     */
-    public function deleteAction($ix = null)
-    {
-        
-        if(method_exists($this->admin, 'isAPI') && $this->admin->isAPI())
-        {
-            $id = $this->get('request')->get($this->admin->getIdParameter());
-            $object = $this->admin->getObject($id);
-            
-            if (!$object) {
-                throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
-            }
 
-            if (false === $this->admin->isGranted('DELETE', $object)) {
-                throw new AccessDeniedException();
-            }
+	/**
+	 * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException|\Symfony\Component\Security\Core\Exception\AccessDeniedException
+	 *
+	 * @param  mixed $ix
+	 * @return Response|RedirectResponse
+	 */
+	public function deleteAction($ix = null)
+	{
+		$id     = $this->get('request')->get($this->admin->getIdParameter());
+		$object = $this->admin->getObject($id);
+		
+		if (!$object) {
+			throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
+		}
+		
+		if ($this->admin->isGranted('DELETE', $object) === false) {
+			throw new AccessDeniedException();
+		}
+		
+		if ($this->getRestMethod() == 'DELETE') {
+			if (method_exists($this->admin, 'isAPI') && $this->admin->isAPI()) {
+				try {
+					$this->admin->delete($object);
+					
+					return ['result' => 'ok'];
+				} catch (ModelManagerException $e) {
+					return ['result' => 'error'];
+				}
+			}
+			
+			// check the csrf token
+			$this->validateCsrfToken('sonata.delete');
+			
+			try {
+				$this->admin->delete($object);
 
-            if ($this->getRestMethod() == 'DELETE') {
+				if ($this->isXmlHttpRequest()) {
+					return $this->renderJson(['result' => 'ok']);
+				}
 
-                try {
-                    $this->admin->delete($object);
-
-                    return array('result' => 'ok');
-
-                } catch (ModelManagerException $e) {
-
-                    return array('result' => 'error');
-                }
-                
-            }
-        }
-        
-        return parent::deleteAction($ix);        
-    }
+				$this->addFlash('sonata_flash_success', $this->admin->trans('flash_delete_success', ['%name%' => $this->admin->toString($object)], 'SonataAdminBundle'));
+			} catch (ModelManagerException $e) {
+				if ($this->isXmlHttpRequest()) {
+					return $this->renderJson(['result' => 'error']);
+				}
+				
+				$this->addFlash('sonata_flash_error', 'Si è verificato un errore durante l\'eliminazione dell\'elemento, causato verosimilmente dalla presenza di dati collegati.');
+			}
+			
+			return new RedirectResponse($this->admin->generateUrl('list'));
+		}
+		
+		return $this->render($this->admin->getTemplate('delete'), [
+			'object'     => $object,
+			'action'     => 'delete',
+			'csrf_token' => $this->getCsrfToken('sonata.delete')
+		]);
+	}
     
     /**
      * 
