@@ -76,6 +76,9 @@ class BaseCRUDController extends CRUDController
             if (false === $this->admin->isGranted('LIST')) {
                 throw new AccessDeniedException();
             }
+            
+            // le chiamate API REST non hanno i filters persistenti
+            $this->admin->setPersistFilters(false);
 
             return $this->admin->getDatagrid()->getResults();
         }
