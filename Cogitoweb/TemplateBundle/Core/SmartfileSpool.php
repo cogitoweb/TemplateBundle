@@ -21,11 +21,13 @@ namespace Cogitoweb\TemplateBundle\Core;
 class SmartfileSpool extends \Swift_ConfigurableSpool
 {
     /** The spool directory */
-    private $_path;
-    private $_sent_path;
-    private $_err_path;
+    private   $_path;
+	private   $_sent_path;
+	private   $_err_path;
+	
+	protected $logger;
 
-    /**
+	/**
      * File WriteRetry Limit
      *
      * @var int
@@ -41,11 +43,12 @@ class SmartfileSpool extends \Swift_ConfigurableSpool
      *
      * @throws Swift_IoException
      */
-    public function __construct($path, $sent, $err)
+    public function __construct($path, $sent, $err, \Psr\Log\LoggerInterface $logger = null)
     {
-        $this->_path = $path;
+        $this->_path      = $path;
         $this->_sent_path = $sent;
-        $this->_err_path = $err;
+        $this->_err_path  = $err;
+		$this->logger     = $logger;
 
         if (!file_exists($this->_path)) {
             if (!mkdir($this->_path, 0777, true)) {
@@ -190,7 +193,15 @@ class SmartfileSpool extends \Swift_ConfigurableSpool
 
                 try
                 {
+					// Svuoto il logger all'invio di ogni messaggio
+					$logger->clear();
+					
                     $count += $transport->send($message, $failedRecipients);
+					
+					// Se viene segnalato un errore da Swiftmailer (!!), lo loggo
+					if ($this->logger && strstr($logger->dump(), '!!') !== false) {
+						$this->logger->error($logger->dump());
+					}
                 }
                 catch(\Exception $ex) {
                     
