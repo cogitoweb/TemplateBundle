@@ -207,7 +207,7 @@ class SmartfileSpool extends \Swift_ConfigurableSpool
                 }
                 catch(\Exception $ex) {
                     
-                    if(filectime($file) > 300) // dopo 5 min sposto in errore
+                    if(filectime($file . '.sending') > 300) // dopo 5 min sposto in errore
                     {
                         $new_file = str_replace($this->_path, $this->_err_path, $file).'.'.time().'.err';
                         
