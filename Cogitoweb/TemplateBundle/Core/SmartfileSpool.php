@@ -194,13 +194,15 @@ class SmartfileSpool extends \Swift_ConfigurableSpool
                 try
                 {
 					// Svuoto il logger all'invio di ogni messaggio
-					$logger->clear();
+					if ($this->logger) {
+						$this->logger->clear();
+					}
 					
                     $count += $transport->send($message, $failedRecipients);
 					
 					// Se viene segnalato un errore da Swiftmailer (!!), lo loggo
-					if ($this->logger && strstr($logger->dump(), '!!') !== false) {
-						$this->logger->error($logger->dump());
+					if ($this->logger && strstr($this->logger->dump(), '!!') !== false) {
+						$this->logger->error($this->logger->dump());
 					}
                 }
                 catch(\Exception $ex) {
