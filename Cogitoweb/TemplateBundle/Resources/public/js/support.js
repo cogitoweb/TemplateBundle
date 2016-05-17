@@ -96,15 +96,14 @@ function disableTranslation(locale, el) {
 }
 
 function initCalendars() {
-    // date
-    $.datepicker.setDefaults($.datepicker.regional[window.CURRENT_LOCALE]);
-    $.timepicker.setDefaults($.timepicker.regional[window.CURRENT_LOCALE]);
+	$('.datepicker').datetimepicker({
+		language : window.CURRENT_LOCALE,
+		pickTime : false
+	});
 
-    $('.datepicker').datepicker();
-    $('.datetimepicker').datetimepicker({
-        addSliderAccess: true,
-        sliderAccessArgs: { touchonly: false }
-    });
+	$('.datetimepicker').datetimepicker({
+		language : window.CURRENT_LOCALE
+	});
 }
 
 $(document).ready(function() {
@@ -170,6 +169,12 @@ $(document).ready(function() {
         // tooltip
         $('.tooltip-cgt').tooltip();
         
+		// Rimuovo la schermata di loading dopo 1,5s
+		$('form.noloading').submit(function(){
+			setTimeout(function() {
+				$('body').removeClass('loading');
+			}, 1500);
+		});
 });
 
 jQuery(document).on('sonata.add_element', function(e) {
