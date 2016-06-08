@@ -15,7 +15,27 @@ file that was distributed with this source code.
     <div class="sonata-ba-view">
         {{ sonata_block_render_event('sonata.admin.show.top', { 'admin': admin, 'object': object }) }}
 
+		{# Setup to handle correct Scaffolding in Bootstrap 3 #}
+		{% set open_row  = true  %}
+		{% set close_row = false %}
+
         {% for name, view_group in admin.showgroups %}
+
+			{# Current group has not css_column attribute but it was preceeded by a group with such attribute, therefore is necessary to close the previously open row #}
+			{% if view_group.css_column is not defined and close_row %}
+                </div>
+
+				{% set open_row  = true  %}
+				{% set close_row = false %}
+            {% endif %}
+
+			{# Open row if current group has css_column attribute and it was not open before (i.e. current group was not preceeded by a group with such attribute) #}
+			{% if view_group.css_column is defined and open_row %}
+                <div class="row">
+
+				{% set open_row  = false %}
+				{% set close_row = true %}
+            {% endif %}
             
             {% if view_group.css_column is defined %}
                 <div class="{{ view_group.css_column }}">
@@ -49,6 +69,14 @@ file that was distributed with this source code.
             {% endif %}
             
         {% endfor %}
+
+		{# Close row if alla groups had been processed and the row has been left open (i.e. last processed group (= loop item) had the css_column attribute) #}
+		{% if close_row %}
+			</div>
+
+			{% set open_row  = true  %}
+			{% set close_row = false %}
+		{% endif %}
 
         {{ sonata_block_render_event('sonata.admin.show.bottom', { 'admin': admin, 'object': object }) }}
 
