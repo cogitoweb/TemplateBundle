@@ -1,14 +1,6 @@
 /*
  * 2016-05-11 Daniele
  */
-.cogitoweb-logo {
-	position         : absolute;
-	bottom           : 0;
-	padding          : .5em;
-	width            : 100%;
-	text-align       : center;
-	background-color : #f9f9f9;
-}
 
 .navbar-nav > .user-menu > .dropdown-menu > li.user-header {
 	height           : 3em;
@@ -486,3 +478,79 @@ body.loading .modal-loader {
 .sonata-bc .white-icon {
     background-image: url('/bundles/cogitowebtemplate/bootstrap/img/glyphicons-halflings-white.png');
 }
+
+
+/* paolo */
+
+section.sidebar {
+	height: calc(100vh - 50px) !important;
+	position: relative;
+}
+section.sidebar .fa-angle-left:before {
+	content: "\f107";
+}
+section.sidebar .fa-angle-down:before {
+	content: "\f106";
+}
+section.sidebar .treeview-menu i {
+	display: none;
+}
+section.sidebar .treeview-menu a {
+	margin-left: 28px !important;
+}
+
+.cogitoweb-logo {
+	width: 100%;
+	position: absolute;
+	bottom: 5px;
+}
+.cogitoweb-logo a {
+	display: block;
+	height: 60px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.fa {
+	margin-right: 7px;
+}
+aside .slimScrollBar {
+	display: none !important;
+}
+
+.forgot-password {
+	float: right;
+	margin-top: 9px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
