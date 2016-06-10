@@ -25,88 +25,88 @@ file that was distributed with this source code.
         {% block meta_tags %}
             <meta charset="UTF-8">
             <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-			<meta name="apple-mobile-web-app-capable" content="yes">
-			<meta name="mobile-web-app-capable" content="yes">
+            <meta name="apple-mobile-web-app-capable" content="yes">
+            <meta name="mobile-web-app-capable" content="yes">
         {% endblock %}
 
         {% block stylesheets %}
-			{% stylesheets
-				'bundles/sonataadmin/vendor/bootstrap/dist/css/bootstrap.min.css'
-				'bundles/sonataadmin/vendor/AdminLTE/css/font-awesome.min.css'
-				'bundles/sonataadmin/vendor/AdminLTE/css/ionicons.min.css'
-				'bundles/sonataadmin/vendor/AdminLTE/css/AdminLTE.css'
-				'bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
-				'bundles/sonataadmin/vendor/select2/select2.css'
-				'bundles/sonataadmin/vendor/select2/select2-bootstrap.css'
-				'bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css'
-				'bundles/sonataadmin/css/styles.css'
-				'bundles/sonataadmin/css/layout.css'
+            {% stylesheets
+                'bundles/sonataadmin/vendor/bootstrap/dist/css/bootstrap.min.css'
+                'bundles/sonataadmin/vendor/AdminLTE/css/font-awesome.min.css'
+                'bundles/sonataadmin/vendor/AdminLTE/css/ionicons.min.css'
+                'bundles/sonataadmin/vendor/AdminLTE/css/AdminLTE.css'
+                'bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
+                'bundles/sonataadmin/vendor/select2/select2.css'
+                'bundles/sonataadmin/vendor/select2/select2-bootstrap.css'
+                'bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css'
+                'bundles/sonataadmin/css/styles.css'
+                'bundles/sonataadmin/css/layout.css'
 
-				'bundles/cogitowebtemplate/css/custom-styles.css'
-				filter='?uglifycss'
-				filter='cssrewrite'
-				output='css/stylesheet'
-			%}
-				<link rel="stylesheet" href="{{ asset_url }}" />
-			{% endstylesheets %}
+                'bundles/cogitowebtemplate/css/custom-styles.css'
+                filter='?uglifycss'
+                filter='cssrewrite'
+                output='css/stylesheet'
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
 
-			{% stylesheets '@CogitowebTemplateBundle/Resources/public/css/print.css' output='css/print' %}
-				<link rel="stylesheet" href="{{ asset_url }}" media="print" />
-			{% endstylesheets %}
-		{% endblock %}
+            {% stylesheets '@CogitowebTemplateBundle/Resources/public/css/print.css' output='css/print' %}
+                <link rel="stylesheet" href="{{ asset_url }}" media="print" />
+            {% endstylesheets %}
+        {% endblock %}
 
         {% block javascripts %}
-			<script>
-				window.SONATA_CONFIG = {
-					CONFIRM_EXIT: {% if admin_pool is defined and admin_pool.getOption('confirm_exit') %}true{% else %}false{% endif %},
-					USE_SELECT2:  {% if admin_pool is defined and admin_pool.getOption('use_select2')  %}true{% else %}false{% endif %},
-					USE_ICHECK:   {% if admin_pool is defined and admin_pool.getOption('use_icheck')   %}true{% else %}false{% endif %}
-				};
+            <script>
+                window.SONATA_CONFIG = {
+                    CONFIRM_EXIT: {% if admin_pool is defined and admin_pool.getOption('confirm_exit') %}true{% else %}false{% endif %},
+                    USE_SELECT2:  {% if admin_pool is defined and admin_pool.getOption('use_select2')  %}true{% else %}false{% endif %},
+                    USE_ICHECK:   {% if admin_pool is defined and admin_pool.getOption('use_icheck')   %}true{% else %}false{% endif %}
+                };
 
-				window.SONATA_TRANSLATIONS = {
-					CONFIRM_EXIT: '{{ 'confirm_exit'|trans({}, 'SonataAdminBundle')|escape('js') }}'
-				};
+                window.SONATA_TRANSLATIONS = {
+                    CONFIRM_EXIT: '{{ 'confirm_exit'|trans({}, 'SonataAdminBundle')|escape('js') }}'
+                };
 
-				window.CURRENT_LOCALE = '{{ app.request.locale }}';
-			</script>
+                window.CURRENT_LOCALE = '{{ app.request.locale }}';
+            </script>
 
-			{% javascripts
-				'@SonataAdminBundle/Resources/public/vendor/jquery/dist/jquery.min.js'
-				'@SonataAdminBundle/Resources/public/vendor/jquery.scrollTo/jquery.scrollTo.min.js'
-				'@SonataCoreBundle/Resources/public/vendor/moment/min/moment-with-locales.min.js'
-				'@SonataAdminBundle/Resources/public/vendor/bootstrap/dist/js/bootstrap.min.js'
-				'@SonataCoreBundle/Resources/public/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
-				'@SonataAdminBundle/Resources/public/jquery/jquery.form.js'
-				'@SonataAdminBundle/Resources/public/jquery/jquery.confirmExit.js'
-				'@SonataAdminBundle/Resources/public/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js'
+            {% javascripts
+                '@SonataAdminBundle/Resources/public/vendor/jquery/dist/jquery.min.js'
+                '@SonataAdminBundle/Resources/public/vendor/jquery.scrollTo/jquery.scrollTo.min.js'
+                '@SonataCoreBundle/Resources/public/vendor/moment/min/moment-with-locales.min.js'
+                '@SonataAdminBundle/Resources/public/vendor/bootstrap/dist/js/bootstrap.min.js'
+                '@SonataCoreBundle/Resources/public/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+                '@SonataAdminBundle/Resources/public/jquery/jquery.form.js'
+                '@SonataAdminBundle/Resources/public/jquery/jquery.confirmExit.js'
+                '@SonataAdminBundle/Resources/public/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js'
 
-				'@SonataAdminBundle/Resources/public/vendor/select2/select2.min.js'
+                '@SonataAdminBundle/Resources/public/vendor/select2/select2.min.js'
 
-				'@SonataAdminBundle/Resources/public/App.js'
-				'@SonataAdminBundle/Resources/public/Admin.js'
-				'@FOSJsRoutingBundle/Resources/public/js/router.js'
-				'@CogitowebTemplateBundle/Resources/public/js/clock.js'
+                '@SonataAdminBundle/Resources/public/App.js'
+                '@SonataAdminBundle/Resources/public/Admin.js'
+                '@FOSJsRoutingBundle/Resources/public/js/router.js'
+                '@CogitowebTemplateBundle/Resources/public/js/clock.js'
 
-				'@CogitowebTemplateBundle/Resources/public/js/support.js'
-				filter='?uglifyjs2'
-				output='js/javascript'
-			%}
-				<script src="{{ asset_url }}"></script>
-			{% endjavascripts %}
+                '@CogitowebTemplateBundle/Resources/public/js/support.js'
+                filter='?uglifyjs2'
+                output='js/javascript'
+            %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
 
-			{# localize select2 #}
-			{% if admin_pool is defined and admin_pool.getOption('use_select2') %}
-				{% set locale = app.request.locale %}
-				{% if locale == 'pt' %}{% set locale = 'pt_PT' %}{% endif %}
+            {# localize select2 #}
+            {% if admin_pool is defined and admin_pool.getOption('use_select2') %}
+                {% set locale = app.request.locale %}
+                {% if locale == 'pt' %}{% set locale = 'pt_PT' %}{% endif %}
 
-				{# omit default EN locale #}
-				{% if locale[:2] != 'en' %}
-					<script src="{{ asset('bundles/sonataadmin/vendor/select2/select2_locale_' ~ locale|replace({'_':'-'}) ~ '.js') }}"></script>
-				{% endif %}
-			{% endif %}
+                {# omit default EN locale #}
+                {% if locale[:2] != 'en' %}
+                    <script src="{{ asset('bundles/sonataadmin/vendor/select2/select2_locale_' ~ locale|replace({'_':'-'}) ~ '.js') }}"></script>
+                {% endif %}
+            {% endif %}
 
-			<script src="{{ path ('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-		{% endblock %}
+            <script src="{{ path ('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+        {% endblock %}
 
         <title>
         {% block sonata_head_title %}
@@ -272,14 +272,12 @@ file that was distributed with this source code.
                                     {% endif %}
                                 {% endblock side_bar_nav %}
                                 {% block side_bar_after_nav %}
-									<div class="cogitoweb-logo">
-										<a href="http://www.cogitoweb.it/" target="_blank">
-											{% image '@CogitowebTemplateBundle/Resources/public/images/cogito-logo.png' %}
-												<img src="{{ asset_url }}" alt="Powered by Cogito" />
-											{% endimage %}
-										</a>
-									</div>
-								{% endblock %}
+                                    <div class="cogitoweb-logo">
+                                        {% image '@CogitowebTemplateBundle/Resources/public/images/cogito-logo.svg' %}
+                                            <a href="http://www.cogitoweb.it/" target="_blank" style="background-image: url({{ asset_url }})"></a>
+                                        {% endimage %}
+                                    </div>
+                                {% endblock %}
                             {% endblock sonata_side_nav %}
                         </section>
                     </aside>
