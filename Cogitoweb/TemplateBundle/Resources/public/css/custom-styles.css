@@ -289,7 +289,7 @@ div.sonata-ba-form-error ul {
   clear:left;
 }
 
-.sonata-ba-form .delete-check input[type=checkbox] {
+.sonata-ba-form .delete-check .icheckbox_minimal {
 	display: none;
 }
 
