@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class CogitowebTemplateExtension extends Extension
+class CogitowebTemplateExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritDoc}
@@ -32,7 +32,7 @@ class CogitowebTemplateExtension extends Extension
 	 */
 	public function prepend(ContainerBuilder $container)
 	{
-		// Override SonataDoctrineORMAdmin bundle default template
+		// Cogitoweb: override SonataDoctrineORMAdmin bundle default template
 		$name = 'sonata_doctrine_orm_admin';
 
 		$config['templates']['form'] = ['CogitowebTemplateBundle:Form:cogitoweb_form_admin_fields.html.twig'];
