@@ -95,20 +95,7 @@ function disableTranslation(locale, el) {
     }
 }
 
-function initCalendars() {
-	$('.datepicker').datetimepicker({
-		language : window.CURRENT_LOCALE,
-		pickTime : false
-	});
-
-	$('.datetimepicker').datetimepicker({
-		language : window.CURRENT_LOCALE
-	});
-}
-
 $(document).ready(function() {
-
-	initCalendars();
         
         //reopen right tab if error
         (function(){
@@ -182,15 +169,8 @@ jQuery(document).on('sonata.add_element', function(e) {
     adjustDeleteRows();
     
     adjustSelect2Submit();
-    
-    initCalendars();
 	
 	jQuery(document).trigger('sonata-collection-item-added');
-});
-
-jQuery(document).on('sonata-admin-append-form-element', function(e) {
-    // date
-    initCalendars();
 });
 
 
