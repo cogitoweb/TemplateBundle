@@ -158,7 +158,7 @@ $(document).ready(function() {
         resizeActionButtons();
         
         // rimuovo filtri impliciti
-        $('.sonata-filter-form .filter_container .implicito').closest('div.clearfix').hide();
+        $('.sonata-filter-form .filter_container .implicito').closest('div.form-group').hide();
         
         // raggruppo esteticamente i multipli
         $('.sonata-filter-form .filter_container .clearfix .form-group:eq(1)').closest('div.clearfix').addClass('filter-date-range'); 
