@@ -1,3 +1,4 @@
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:700,700italic);
 /*
  * 2016-05-11 Daniele
  */
@@ -480,9 +481,45 @@ body.loading .modal-loader {
 }
 
 
-/* paolo */
 
-section.sidebar {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================================
+   PAOLO ===================================================================
+   ========================================================================= */
+
+html, body, .wrapper, aside.left-side, section.sidebar {
+	min-height: 0 !important;
+}
+
+aside.left-side, section.sidebar {
 	height: calc(100vh - 50px) !important;
 	position: relative;
 }
@@ -498,6 +535,41 @@ section.sidebar .treeview-menu i {
 section.sidebar .treeview-menu a {
 	margin-left: 28px !important;
 }
+aside.left-side div.slimScrollDiv {
+	overflow: visible !important;
+}
+
+.login-form label[for=remember_me] .icheckbox_minimal {
+	margin-top: 0;
+	float: left;
+}
+.login-form label[for=remember_me] span {
+	display: block;
+	float: left;
+	margin-top: -1px;
+	margin-left: 7px;
+}
+
+.navbar-top-links li a, .navbar-top-links li span,
+.navbar-nav > li > a {
+	padding: 15px 14px 14px 14px;
+	min-height: 48px;
+}
+
+.dropdown.user-menu:hover .dropdown-menu {
+	display: block;
+}
+.navbar-nav > .user-menu > .dropdown-menu.dropdown-user {
+	margin-top: 1px;
+}
+.navbar-nav > .user-menu > .dropdown-menu.dropdown-user:after {
+	content: none;
+}
+
+.right-side > .content-header {
+	padding: 15px;
+	padding-bottom: 0;
+}
 
 .cogitoweb-logo {
 	width: 100%;
@@ -511,23 +583,163 @@ section.sidebar .treeview-menu a {
 	background-repeat: no-repeat;
 	background-position: center;
 }
+.btn.btn-outline {
+	transition: all 0.35s;
+}
 .fa {
 	margin-right: 7px;
+}
+table.table a .fa,
+.navbar-left i.fa-home {
+	margin-right: 0;
 }
 aside .slimScrollBar {
 	display: none !important;
 }
-
 .forgot-password {
 	float: right;
 	margin-top: 9px;
 }
+.modal-body .row {
+	margin-top: 15px;
+}
+.modal-body form .row,
+.modal-body .row {
+	margin-right: 0;
+	margin-left: 0;
+}
+.modal-body .well {
+	margin-right: 15px;
+	margin-left: 15px;
+	text-align: center;
+}
+.modal-body .well .btn-success {
+	font-weight: bold;
+	font-size: 120%;
+	padding: 7px 16px;
+}
+
+.well.form-actions {
+	color: transparent;
+}
+.well.form-actions .btn-danger {
+	margin-left: -45px;
+}
+
+.fa + .fa {
+	display: none;
+}
+
+.navbar-left {
+	margin-left: 15px;
+}
+
+
+/* select 2 */
+.select2-container > *:first-child {
+    color: #333;
+    height: 31px;
+    border-color: #ccc;
+    border-radius: 0;
+    background-color: #fff;
+    background-image: none;
+}
+.select2-container .select2-choice abbr {
+	top: 9px;
+}
+.select2-container .select2-choice .select2-arrow {
+	border-left: none;
+    border-radius: 0;
+    background: transparent;
+    background-image: none;
+}
+.select2-container .select2-choice .select2-arrow:before {
+	content: "\f107";
+	display: inline-block;
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 2.145;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #777;
+}
+.select2-dropdown-open .select2-choice .select2-arrow:before {
+	content: "\f106";
+	display: inline-block;
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 2.145;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #777;
+}
+.select2-container .select2-choice .select2-arrow b {
+	display: none;
+}
+div.select2-drop ul {
+	padding: 0;
+}
+.select2-container .select2-choice {
+	line-height: 29px;
+}
+
+
+.icheckbox_minimal {
+	margin-top: 7px;
+}
 
 
 
+@media (min-width: 768px) {
+	.navbar.navbar-default .dropdown.sonata-actions a.dropdown-toggle {
+		display: none;
+	}
+	.navbar.navbar-default .dropdown.sonata-actions .dropdown-menu {
+		position: static;
+	    top: auto;
+	    left: auto;
+	    display: block;
+	    float: none;
+	    min-width: auto;
+	    padding: 15px 0;
+	    margin: 0;
+	    list-style-type: none;
+	    font-size: 14px;
+	    background-color: initial;
+	    border: 0;
+	    border-radius: 0;
+	    -webkit-box-shadow: none;
+	    box-shadow: none;
+	    background-clip: border-box;
+	}
+	.navbar.navbar-default .dropdown.sonata-actions .dropdown-menu > li {
+		display: inline-block;
+		float: right;
+		margin-right: 20px;
+	}
+	.navbar.navbar-default .dropdown.sonata-actions .dropdown-menu > li > a {
+		display: inline;
+		padding: 0;
+		clear: both;
+		font-weight: 400;
+		line-height: initial;
+		color: #333;
+		white-space: nowrap;
+	}
+	.navbar.navbar-default .dropdown.sonata-actions .dropdown-menu > li > a:hover, 
+	.navbar.navbar-default .dropdown.sonata-actions .dropdown-menu > li > a:focus {
+		background: transparent;
+		color: #777;
+	}
+	.navbar.navbar-default .dropdown.sonata-actions .dropdown-menu > li > a .fa {
+		margin-right: 5px;
+	}
+	.navbar-right {
 
-
-
+	}
+}
 
 
 

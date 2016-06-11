@@ -1,0 +1,6 @@
+{% extends 'SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig' %}
+
+{# Cogitoweb: override *_to_many templates to implement delete button #}
+{% block sonata_admin_orm_one_to_many_widget %}
+	{% include 'SonataAdminBundle:CRUD:edit_orm_one_to_many.html.twig' %}
+{% endblock %}
