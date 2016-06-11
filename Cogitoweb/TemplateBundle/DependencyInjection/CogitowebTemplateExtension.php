@@ -5,6 +5,7 @@ namespace Cogitoweb\TemplateBundle\DependencyInjection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
@@ -25,4 +26,17 @@ class CogitowebTemplateExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function prepend(ContainerBuilder $container)
+	{
+		// Override SonataDoctrineORMAdmin bundle default template
+		$name = 'sonata_doctrine_orm_admin';
+
+		$config['templates']['form'] = ['CogitowebTemplateBundle:Form:cogitoweb_form_admin_fields.html.twig'];
+
+		$container->prependExtensionConfig($name, $config);
+	}
 }
