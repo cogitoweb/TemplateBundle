@@ -600,6 +600,9 @@ aside .slimScrollBar {
 	float: right;
 	margin-top: 9px;
 }
+.modal-body {
+	overflow-x: hidden;
+}
 .modal-body .row {
 	margin-top: 15px;
 }
@@ -634,6 +637,9 @@ aside .slimScrollBar {
 	margin-left: 15px;
 }
 
+.alert {
+	margin-left: 0;
+}
 
 /* select 2 */
 .select2-container > *:first-child {
@@ -690,6 +696,9 @@ div.select2-drop ul {
 	margin-top: 7px;
 }
 
+.delete_link.fake-check i {
+	top: 2px;
+}
 
 
 @media (min-width: 768px) {
