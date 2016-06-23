@@ -1,0 +1,92 @@
+<script src="{{ asset('bundles/applicationlavadrcrud/js/zepto.min.js') }}"></script>
+<script src="{{ asset('bundles/applicationlavadrcrud/js/plotly-1.6.3.min.js') }}"></script>
+
+<style>
+	.graphs-container #error {
+		display: none;
+	}
+	.centered {
+		margin:0 auto;
+		text-align:center;
+	}
+</style>
+
+{% for graph in graphs %}
+	<div class="box box-primary box-graph-{{ loop.index }}">
+		<div id="loader" class="centered">
+			<img src="{{ asset('bundles/applicationlavadrcrud/images/loader.gif') }}" alt="loading..." />
+		</div>
+		<div id="error" class="centered">
+			Impossibile caricare i dati
+		</div>
+	</div>
+
+	<script>
+		/* https://plot.ly/javascript/reference */
+		(function() {
+			var d3 = Plotly.d3;
+
+			var WIDTH_IN_PERCENT_OF_PARENT  = 100,
+				HEIGHT_IN_PERCENT_OF_PARENT = 30;
+
+			var gd3 = d3.select('.box-graph-{{ loop.index }}')
+				.append('div')
+				.style({
+					width: WIDTH_IN_PERCENT_OF_PARENT + '%',
+					height: HEIGHT_IN_PERCENT_OF_PARENT + 'vh',
+					'margin-top': '15px'
+				});
+
+			var initPlotly = function(gd, data, color) {
+
+				for(var k in data)
+				{
+					data[k]["type"] = 'bar';
+					data[k]["marker"] = {
+						color: color,
+						line: {
+							width: 1
+						}
+					};
+				}
+
+				Plotly.plot(gd, data, 
+				{
+					title: 'aaaaaa',
+					xaxis: {  type: '-' },
+					yaxis: {  type: '-' },
+					zaxis: {  type: '-' },
+					font: {
+						size: 14
+					}
+				});
+				window.onresize = function() {
+					Plotly.Plots.resize(gd);
+				};
+			};
+			
+			var errorFunction = function() {
+				$('.box-graph-{{ loop.index }} #loader').hide();
+				$('.box-graph-{{ loop.index }} #error').show();
+			};
+			
+			$.ajax({
+				url: '{{ graph.url }}',
+				dataType: 'jsonp',
+				timeout: 5000,	// se dataType = jsonp non viene chiamato l'errore quindi l'unico modo è un timeout
+				success: function(response) {
+
+					if(response.result == 'OK') {
+						$('.box-graph-{{ loop.index }} #loader').hide();
+						initPlotly(gd3.node(), response.data,'#4285F4');
+					} else {
+						errorFunction();
+					}
+				},
+				error: function(xhr, status, error) {
+					errorFunction();
+				}
+			});
+		})();
+	</script>
+{% endfor %}
