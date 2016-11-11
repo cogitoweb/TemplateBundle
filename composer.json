@@ -1,17 +1,24 @@
 {
-    "name": "cogitoweb/template-bundle",
-    "authors": [
-        {
-            "name": "zzx",
-            "email": "paolo.cazzitti@cogitoweb.it"
-        }
-    ],
-    "autoload": {
-        "psr-0": {
-            "Cogitoweb\\TemplateBundle": ""
-        }
-    },
-    "require": {
-        "symfony/symfony": "~2.3"
-    }
+	"name":         "cogitoweb/template-bundle",
+	"description" : "Customizations for CogitowebMultiLevelAdminBundle",
+	"type"        : "symfony-bundle",
+	"keywords"    : ["sonata", "admin", "cogitoweb", "multi-level"],
+	"homepage"    : "https://github.com/cogitoweb/TemplateBundle",
+	"license"     : "MIT",
+	"authors"     : [
+		{
+			"name"  : "2z",
+			"email" : "paolo.cazzitti@cogitoweb.it"
+		},
+		{
+			"name"  : "Daniele Artico",
+			"email" : "daniele.artico@cogitoweb.it"
+		}
+	],
+	"require"     : {
+		"cogitoweb/multi-level-admin-bundle" : "3.3.*"
+	},
+	"autoload"    : {
+		"psr-4" : { "Cogitoweb\\TemplateBundle\\" : "" }
+	}
 }
