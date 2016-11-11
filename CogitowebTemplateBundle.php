@@ -11,6 +11,6 @@ class CogitowebTemplateBundle extends Bundle
 	 */
 	public function getParent()
 	{
-		return 'SonataAdminBundle';
+		return 'CogitowebMultiLevelAdminBundle';
 	}
 }
