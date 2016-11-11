@@ -1,5 +1,17 @@
+parameters:
+    # Visit http://userguide.icu-project.org/formatparse/datetime for reference
+    date_pattern:     dd/MM/y
+    time_pattern:     HH:mm
+    datetime_pattern: %date_pattern% %time_pattern%
+
 services:
     sonata.admin.orm.filter.type.string:
         class: Cogitoweb\TemplateBundle\Filter\CaseInsensitiveStringFilter
         tags:
             - { name: sonata.admin.filter.type, alias: doctrine_orm_string }
+
+    sonata.intl.twig.extension.datetime:
+        class:     Cogitoweb\TemplateBundle\Twig\Extension\DateTimeExtension
+        arguments: [ "@sonata.intl.templating.helper.datetime", %date_pattern%, %time_pattern%, %datetime_pattern% ]
+        tags:
+            - { name: twig.extension }
