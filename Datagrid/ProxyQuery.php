@@ -39,7 +39,7 @@ class ProxyQuery extends SonataProxyQuery
 	/**
 	 * {@inheritdoc}
 	 */
-	private function getFixedQueryBuilder(QueryBuilder $queryBuilder)
+	protected function getFixedQueryBuilder(QueryBuilder $queryBuilder)
 	{
 		$queryBuilderId = clone $queryBuilder;
         // step 1 : retrieve the targeted class
