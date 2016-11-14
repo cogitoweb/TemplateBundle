@@ -107,6 +107,8 @@ file that was distributed with this source code.
 			{% endif %}
 
 			<script src="{{ path ('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+			<script src="{{ asset('bundles/cogitowebtemplate/js/jquery.cookie.js') }}"></script>
+            <script src="{{ asset('bundles/cogitowebtemplate/js/support.js') }}"></script>
 		{% endblock %}
 
 		<title>
