@@ -29,4 +29,14 @@ class AbstractAdmin extends CogitowebAbstractAdmin
 
 		return $cogitowebProxyQuery;
 	}
+
+	/**
+	 * Is underlying object new?
+	 * 
+	 * @return boolean
+	 */
+	public function isNew()
+	{
+		return $this->getRoot()->getSubject() && $this->getRoot()->getSubject()->getId();
+	}
 }
