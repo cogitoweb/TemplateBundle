@@ -5,13 +5,39 @@ parameters:
     datetime_pattern: %date_pattern% %time_pattern%
 
 services:
+
+    #
+    # Case insensitive string filter
+    #
     sonata.admin.orm.filter.type.string:
         class: Cogitoweb\TemplateBundle\Filter\CaseInsensitiveStringFilter
         tags:
             - { name: sonata.admin.filter.type, alias: doctrine_orm_string }
+    #
+    # Enable Twig internationalization
+    #
+    twig.extensions.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
 
+    #
+    # Default date format
+    #
     sonata.intl.twig.extension.datetime:
         class:     Cogitoweb\TemplateBundle\Twig\Extension\DateTimeExtension
         arguments: [ "@sonata.intl.templating.helper.datetime", %date_pattern%, %time_pattern%, %datetime_pattern% ]
         tags:
             - { name: twig.extension }
+
+    cogitoweb.template.form.type.date_range_picker:
+        class:     Cogitoweb\TemplateBundle\Form\Type\DateRangePickerType
+        arguments: [ "@translator", %date_pattern% ]
+        tags:
+            - { name: form.type }
+
+    cogitoweb.template.form.type.date_picker:
+        class:     Cogitoweb\TemplateBundle\Form\Type\DatePickerType
+        arguments: [ "@sonata.core.date.moment_format_converter", "@translator", %date_pattern% ]
+        tags:
+            - { name: form.type }

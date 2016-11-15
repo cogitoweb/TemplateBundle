@@ -1,0 +1,14 @@
+#
+# Enable Bootstrap date picker and custom form types with default date format
+#
+twig:
+    form:
+        resources:
+            - "SonataCoreBundle:Form:datepicker.html.twig"
+
+sonata_core:
+    form:
+        mapping:
+            type:
+                sonata_type_date_range_picker: Cogitoweb\TemplateBundle\Form\Type\DateRangePickerType
+                sonata_type_date_picker:       Cogitoweb\TemplateBundle\Form\Type\DatePickerType
