@@ -39,4 +39,16 @@ class AbstractAdmin extends CogitowebAbstractAdmin
 	{
 		return $this->getRoot()->getSubject() && $this->getRoot()->getSubject()->getId();
 	}
+
+	/**
+	 * Get service
+	 * 
+	 * @param  string $service
+	 * 
+	 * @return mixed
+	 */
+	public function getService($service)
+	{
+		return $this->getConfigurationPool()->getContainer()->get($service);
+	}
 }
