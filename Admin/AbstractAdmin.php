@@ -39,13 +39,12 @@ class AbstractAdmin extends CogitowebAbstractAdmin
 	}
 
 	/**
-	 * Is underlying object new?
-	 * 
-	 * @return boolean
+	 * {@inheritdoc}
 	 */
-	public function isNew()
+	public function getBatchActions()
 	{
-		return $this->getRoot()->getSubject() && $this->getRoot()->getSubject()->getId();
+		// Disable batch actions
+		return [];
 	}
 
 	/**
@@ -60,7 +59,15 @@ class AbstractAdmin extends CogitowebAbstractAdmin
 		return $this->getConfigurationPool()->getContainer()->get($service);
 	}
 
-	
+	/**
+	 * Is underlying object new?
+	 * 
+	 * @return boolean
+	 */
+	public function isNew()
+	{
+		return $this->getRoot()->getSubject() && $this->getRoot()->getSubject()->getId();
+	}
 
 	/**
 	 * Append object informations, if available, to current ShowMapper:
@@ -77,7 +84,7 @@ class AbstractAdmin extends CogitowebAbstractAdmin
 	 * @param string[]   $withOptions
 	 * @param string[]   $objectInformationFields
 	 */
-	public function addObjectInformations(ShowMapper $showMapper, $tabName = null, array $tabOptions = [], $withName = 'label.object_informations', array $withOptions = [], array $objectInformationFields = ['id', 'createdBy', 'updatedBy', 'createdAt', 'updatedAt'])
+	protected function addObjectInformations(ShowMapper $showMapper, $tabName = null, array $tabOptions = [], $withName = 'label.object_informations', array $withOptions = [], array $objectInformationFields = ['id', 'createdBy', 'updatedBy', 'createdAt', 'updatedAt'])
 	{
 		$entityManager = $this->getEntityManager();
 		$className     = $this->getClass();
@@ -120,6 +127,20 @@ class AbstractAdmin extends CogitowebAbstractAdmin
 		if (null !== $tabName) {
 			$showMapper->end();
 		}
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function configureRoutes(RouteCollection $collection)
+	{
+		parent::configureRoutes($collection);
+
+		// Disable batch and export routes
+		$collection
+			->remove('batch')
+			->remove('export')
+		;
 	}
 
 	/**
