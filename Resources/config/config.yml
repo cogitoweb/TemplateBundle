@@ -6,6 +6,9 @@ twig:
         resources:
             - "SonataCoreBundle:Form:datepicker.html.twig"
 
+sonata_admin:
+    show_mosaic_button: false
+
 sonata_core:
     form:
         mapping:
