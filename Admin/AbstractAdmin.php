@@ -67,7 +67,7 @@ class AbstractAdmin extends CogitowebAbstractAdmin
 	 */
 	public function isNew()
 	{
-		return $this->getRoot()->getSubject() && $this->getRoot()->getSubject()->getId();
+		return $this->getRoot()->getSubject() && !$this->getRoot()->getSubject()->getId();
 	}
 
 	/**
