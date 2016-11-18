@@ -1,0 +1,31 @@
+{#
+	Cogitoweb: this macro allows developers to append custom templates to show groups title.
+	To use this feature, when using the with() method in ShowMapper, set the "template" option
+	with custom template to append.
+	Example:
+		...
+		protected function configureShowFields(ShowMapper $showMapper)
+		{
+			$showMapper
+				->with('Foo', ['template' => AcmeBundle::bar.html.twig'])
+				...
+		}
+		...
+#}
+
+{% extends '@SonataAdmin/CRUD/base_show_macro.html.twig' %}
+
+{# Cogitoweb: repeat the macro because it cannot be extended #}
+{% macro render_groups(admin, object, elements, groups, has_tab, no_padding = false) %}
+    <div class="row">
+        {{ block('field_row') }}
+    </div>
+{% endmacro %}
+
+{% block show_title %}
+	{{ parent() }}
+
+	{% if show_group.template is defined %}
+		{% include show_group.template %}
+	{% endif %}
+{% endblock %}
