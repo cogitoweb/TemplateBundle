@@ -18,3 +18,61 @@
 		</ul>
 	</div>
 {% endblock %}
+
+{# AJAX loader #}
+{% block stylesheets %}
+	{{ parent() }}
+
+	<style type="text/css">
+		body.loader          { overflow : hidden; }
+		body.loader .spinner { display  : block; }
+
+		.spinner {
+			display          : none;
+			position         : fixed;
+			top              : 0;
+			right            : 0;
+			bottom           : 0;
+			left             : 0;
+			z-index          : 1050;
+			background-color : rgba(0, 0, 0, .3);
+		}
+
+		.spinner .spinner-wrapper {
+			position  : fixed;
+			top       : 50%;
+			left      : 50%;
+			transform : translate(-50%, -50%);
+			color     : white;
+		}
+	</style>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript">
+		$(function () {
+			$(document).on({
+				ajaxStart : function() { $('body').addClass   ('loader'); },
+				ajaxStop  : function() { $('body').removeClass('loader'); },
+				submit    : function() { $('body').addClass   ('loader'); }
+			});
+		});
+	</script>
+{% endblock %}
+
+{% block sonata_wrapper %}
+	{{ parent() }}
+
+	{{ block('spinner') }}
+{% endblock %}
+
+{% block spinner %}
+	<div class="spinner">
+		<div class="spinner-wrapper">
+			<i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+{% endblock %}
