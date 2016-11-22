@@ -41,3 +41,7 @@ services:
         arguments: [ "@sonata.core.date.moment_format_converter", "@translator", %date_pattern% ]
         tags:
             - { name: form.type }
+
+    swiftmailer.mailer.default.spool.smartfile:
+        class:     Cogitoweb\TemplateBundle\Core\SmartfileSpool
+        arguments: [ %kernel.root_dir%/mailspool, %kernel.root_dir%/mailspool_sent, %kernel.root_dir%/mailspool_err ]
