@@ -42,6 +42,16 @@ services:
         tags:
             - { name: form.type }
 
+    #
+    # Custom smartfile spool for Swiftmailer
+    #
     swiftmailer.mailer.default.spool.smartfile:
         class:     Cogitoweb\TemplateBundle\Core\SmartfileSpool
         arguments: [ %kernel.root_dir%/mailspool, %kernel.root_dir%/mailspool_sent, %kernel.root_dir%/mailspool_err ]
+
+    #
+    # Custom Datagrid builder
+    #
+    cogitoweb.template.builder.datagrid:
+        class:     Cogitoweb\TemplateBundle\Builder\DatagridBuilder
+        arguments: [ "@form.factory", "@sonata.admin.builder.filter.factory", "@sonata.admin.guesser.orm_datagrid_chain", %form.type_extension.csrf.enabled% ]

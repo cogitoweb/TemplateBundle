@@ -16,11 +16,32 @@ use Sonata\AdminBundle\Show\ShowMapper;
 class AbstractAdmin extends CogitowebAbstractAdmin
 {
 	/**
+	 * Constants used in {@see getCollectionIds()}
+	 * 
+	 * @const string
+	 */
+	const PHP_ARRAY_FORMAT      = 'php';
+	const POSTGRES_ARRAY_FORMAT = 'postgres';
+
+	/**
 	 * Fields to show in added object informations
 	 * 
 	 * @var string[]
 	 */
 	protected $objectInformationFields = ['id', 'createdBy', 'updatedBy', 'createdAt', 'updatedAt'];
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function buildDatagrid()
+	{
+		parent::buildDatagrid();
+
+		// Handle add query results with method {@see addQueryResults()}
+		if (method_exists($this->datagrid, 'setAddQueryResults')) {
+			$this->datagrid->setAddQueryResults($this->addQueryResults());
+		}
+	}
 
 	/**
 	 * Overridden method to use Cogitoweb's ProxyQuery.
@@ -46,6 +67,58 @@ class AbstractAdmin extends CogitowebAbstractAdmin
 	{
 		// Disable batch actions
 		return [];
+	}
+
+	/**
+	 * Get collection id
+	 * 
+	 * @static
+	 * 
+	 * @param array|Iterable $collection
+	 * @param string         $format
+	 * 
+	 * @return integer[]
+	 */
+	public static function getCollectionIdsStatic($collection, $format = self::PHP_ARRAY_FORMAT)
+	{
+		$ids = [];
+
+		foreach ($collection as $item) {
+			switch (true) {
+				case is_object($item):
+					$ids[] = $item->getId();
+					break;
+				case is_array($item):
+					if (array_key_exists('id', $item)) {
+						$ids[] = $item['id'];
+					}
+					break;
+				default:
+				
+			}
+		}
+
+		switch ($format) {
+			case self::POSTGRES_ARRAY_FORMAT:
+				return sprintf('{%s}', implode(',', $ids));
+			case self::PHP_ARRAY_FORMAT:
+				return $ids;
+			default:
+				
+		}
+	}
+
+	/**
+	 * Get collection ids
+	 * 
+	 * @param array|Iterable $collection
+	 * @param string         $format
+	 * 
+	 * @return integer[]
+	 */  
+	public function getCollectionIds($collection, $format = self::PHP_ARRAY_FORMAT)
+	{
+		return self::getCollectionIdsStatic($collection, $format);
 	}
 
 	/**
@@ -85,7 +158,7 @@ class AbstractAdmin extends CogitowebAbstractAdmin
 	 * @param string[]   $withOptions
 	 * @param string[]   $objectInformationFields
 	 */
-	protected function addObjectInformations(ShowMapper $showMapper, $tabName = null, array $tabOptions = [], $withName = 'label.object_informations', array $withOptions = [], array $objectInformationFields = ['id', 'createdBy', 'updatedBy', 'createdAt', 'updatedAt'])
+	protected function addObjectInformations(ShowMapper $showMapper, $tabName = null, array $tabOptions = [], $withName = 'Informazioni aggiuntive', array $withOptions = [], array $objectInformationFields = ['id', 'createdBy', 'updatedBy', 'createdAt', 'updatedAt'])
 	{
 		$entityManager = $this->getEntityManager();
 		$className     = $this->getClass();
@@ -129,6 +202,13 @@ class AbstractAdmin extends CogitowebAbstractAdmin
 			$showMapper->end();
 		}
 	}
+
+	/**
+	 * Inject custom values to retrieved objects
+	 * 
+	 * @return closure Method must return a closure with the objects to be used in the Datagrid
+	 */
+	public function addQueryResults() {}
 
 	/**
 	 * {@inheritdoc}
