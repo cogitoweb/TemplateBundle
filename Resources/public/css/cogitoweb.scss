@@ -1,0 +1,281 @@
+// To change this license header, choose License Headers in Project Properties.
+// To change this template file, choose Tools | Templates
+// and open the template in the editor.
+// Created on : 23-nov-2016, 9.10.19
+// Author     : Daniele Artico <daniele.artico$cogitoweb.it>
+/*
+ * Cogitoweb: AJAX loader
+ * 
+ * To start the loader add class "loader" to body
+ */
+
+body.loader {
+	overflow: hidden;
+	.overlay {
+		display: block;
+	}
+}
+
+// Dark overlay
+
+.overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1050;
+	background-color: rgba(0, 0, 0, 0.3);
+	.spinner {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: white;
+	}
+}
+
+// Center spinner
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// =========================================================================
+// PAOLO ===================================================================
+// =========================================================================
+
+// aside menu icons
+aside.left-side {
+	height: calc(100vh - 50px) !important;
+	position: relative;
+}
+
+section.sidebar {
+	height: calc(100vh - 50px) !important;
+	position: relative;
+	.fa-angle-left:before {
+		content: "\f107";
+	}
+}
+.sidebar-menu li.active > a > .fa-angle-left {
+	-webkit-transform: rotate(-180deg);
+	-ms-transform: rotate(-180deg);
+	-o-transform: rotate(-180deg);
+	transform: rotate(-180deg);
+}
+
+
+section.sidebar .treeview-menu {
+	i {
+		display: none;
+	}
+	a {
+		margin-left: 28px !important;
+	}
+}
+
+aside.left-side div.slimScrollDiv {
+	overflow: visible !important;
+}
+
+.login-form label[for="remember_me"] {
+	.icheckbox_minimal {
+		margin-top: 0;
+		float: left;
+	}
+	span {
+		display: block;
+		float: left;
+		margin-top: -1px;
+		margin-left: 7px;
+	}
+}
+
+.navbar-top-links li {
+	a, span {
+		padding: 15px 14px 14px 14px;
+		min-height: 48px;
+	}
+}
+
+.navbar-nav > li > a {
+	padding: 15px 14px 14px 14px;
+	min-height: 48px;
+}
+
+.dropdown.user-menu:hover .dropdown-menu {
+	display: block;
+}
+
+.navbar-nav > .user-menu > .dropdown-menu.dropdown-user {
+	margin-top: 1px;
+	&:after {
+		content: none;
+	}
+}
+
+.right-side > .content-header {
+	padding: 15px;
+	padding-bottom: 0;
+}
+
+.cogitoweb-logo {
+	width: 100%;
+	position: absolute;
+	bottom: 5px;
+	a {
+		display: block;
+		height: 60px;
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+}
+
+.btn.btn-outline {
+	transition: all 0.35s;
+}
+
+.fa {
+	margin-right: 7px;
+}
+
+table.table a .fa, .navbar-left i.fa-home {
+	margin-right: 0;
+}
+
+aside .slimScrollBar {
+	display: none !important;
+}
+
+.forgot-password {
+	float: right;
+	margin-top: 9px;
+}
+
+.modal-body {
+	overflow-x: hidden;
+	.row {
+		margin-top: 15px;
+	}
+	form .row, .row {
+		margin-right: 0;
+		margin-left: 0;
+	}
+	.well {
+		margin-right: 15px;
+		margin-left: 15px;
+		text-align: center;
+		.btn-success {
+			font-weight: bold;
+			font-size: 120%;
+			padding: 7px 16px;
+		}
+	}
+}
+
+.well.form-actions {
+	color: transparent;
+	.btn-danger {
+		margin-left: -45px;
+	}
+}
+
+.fa + .fa {
+	display: none;
+}
+
+.navbar-left {
+	margin-left: 15px;
+}
+
+.alert {
+	margin-left: 0;
+}
+
+.icheckbox_minimal {
+	margin-top: 7px;
+}
+
+.delete_link.fake-check i {
+	top: 2px;
+}
+
+@media (min-width: 768px) {
+	.navbar.navbar-default .dropdown.sonata-actions {
+		a.dropdown-toggle {
+			display: none;
+		}
+		.dropdown-menu {
+			position: static;
+			top: auto;
+			left: auto;
+			display: block;
+			float: none;
+			min-width: auto;
+			padding: 15px 0;
+			margin: 0;
+			list-style-type: none;
+			font-size: 14px;
+			background-color: initial;
+			border: 0;
+			border-radius: 0;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			background-clip: border-box;
+			> li {
+				display: inline-block;
+				float: right;
+				margin-right: 20px;
+				> a {
+					display: inline;
+					padding: 0;
+					clear: both;
+					font-weight: 400;
+					line-height: initial;
+					color: #333;
+					white-space: nowrap;
+					&:hover, &:focus {
+						background: transparent;
+						color: #777;
+					}
+					.fa {
+						margin-right: 5px;
+					}
+				}
+			}
+		}
+	}
+}
