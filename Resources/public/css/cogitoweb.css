@@ -3,38 +3,45 @@
  * 
  * To start the loader add class "loader" to body
  */
-body.loader {
-  overflow: hidden; }
-  body.loader .overlay {
-    display: block; }
+body.loader          { overflow : hidden; }
+body.loader .overlay { display  : block;  }
 
 .overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1050;
-  background-color: rgba(0, 0, 0, 0.3); }
-  .overlay .spinner {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white; }
+	display          : none;
+	position         : fixed;
+	top              : 0;
+	right            : 0;
+	bottom           : 0;
+	left             : 0;
+	z-index          : 1050;
+	background-color : rgba(0, 0, 0, 0.3);
+}
+
+.overlay .spinner {
+	position  : fixed;
+	top       : 50%;
+	left      : 50%;
+	transform : translate(-50%, -50%);
+	color     : white;
+}
+/* AJAX loader*/
+
+.sonata-ba-field .select2-container + select {
+    display : block !important;
+    width   : 0;
+    height  : 0;
+}
 
 aside.left-side {
   height: calc(100vh - 50px) !important;
-  position: relative; }
+  position: relative;
+}
 
 section.sidebar {
   height: calc(100vh - 50px) !important;
   position: relative; }
-  section.sidebar .fa-angle-left:before {
-    content: "\f107"; }
 
-.sidebar-menu li.active > a > .fa-angle-left {
+.sidebar-menu li.active > a > .fa-angle-down {
   -webkit-transform: rotate(-180deg);
   -ms-transform: rotate(-180deg);
   -o-transform: rotate(-180deg);
