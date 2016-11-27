@@ -15,6 +15,13 @@ $(function () {
 		ajaxStop  : function() { $('body').removeClass('loader'); },
 		submit    : function() { $('body').addClass   ('loader'); }
 	});
+
+	// Hide loader after 3s to prevent user navigation lock if no data is received
+	$('form.no-loader').submit(function() {
+		setTimeout(function() {
+			$('body').removeClass('loader');
+		}, 3000);
+	});
 	/* AJAX loader */
 
 	/*
