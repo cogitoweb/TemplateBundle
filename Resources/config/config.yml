@@ -17,3 +17,10 @@ sonata_core:
             type:
                 sonata_type_date_range_picker: Cogitoweb\TemplateBundle\Form\Type\DateRangePickerType
                 sonata_type_date_picker:       Cogitoweb\TemplateBundle\Form\Type\DatePickerType
+
+doctrine:
+    orm:
+        dql:
+            string_functions:
+                ANY_ARRAY:     Cogitoweb\TemplateBundle\Query\Postgresql\Any
+                OVERLAP_ARRAY: Cogitoweb\TemplateBundle\Query\Postgresql\Overlap
