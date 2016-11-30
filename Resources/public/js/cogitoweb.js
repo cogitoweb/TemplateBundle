@@ -44,3 +44,71 @@ $(function () {
 	});
 	/* Sidebar status */
 });
+
+if(Admin) {
+
+    Admin.add_filters = function(subject) {
+        Admin.log('[core|add_filters] configure filters on', subject);
+        jQuery('a.sonata-toggle-filter', subject).on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (jQuery(e.target).attr('sonata-filter') == 'false') {
+                return;
+            }
+
+            Admin.log('[core|add_filters] handle filter container: ', jQuery(e.target).attr('filter-container'))
+
+            var filters_container = jQuery('#' + jQuery(e.currentTarget).attr('filter-container'));
+
+            if (jQuery('div[sonata-filter="true"]:visible', filters_container).length == 0) {
+                jQuery(filters_container).slideDown();
+            }
+
+            var targetSelector = jQuery(e.currentTarget).attr('filter-target'),
+                target = jQuery('div[id="' + targetSelector + '"]', filters_container),
+                filterToggler = jQuery('i', '.sonata-toggle-filter[filter-target="' + targetSelector + '"]')
+            ;
+
+            if (jQuery(target).is(":visible")) {
+                filterToggler
+                    .removeClass('fa-check-square-o')
+                    .addClass('fa-square-o')
+                ;
+
+                target.hide();
+
+            } else {
+                filterToggler
+                    .removeClass('fa-square-o')
+                    .addClass('fa-check-square-o')
+                ;
+
+                target.show();
+            }
+
+            /* 2z -> inibisco chiusura sezione filtri */
+            /*
+            if (jQuery('div[sonata-filter="true"]:visible', filters_container).length > 0) {
+                jQuery(filters_container).slideDown();
+            } else {
+                jQuery(filters_container).slideUp();
+            }
+            */
+        });
+
+        jQuery('.sonata-filter-form', subject).on('submit', function () {
+            jQuery(this).find('[sonata-filter="true"]:hidden :input').val('');
+        });
+
+        /* Advanced filters */
+        if (jQuery('.advanced-filter :input:visible', subject).filter(function () { return jQuery(this).val() }).length === 0) {
+            jQuery('.advanced-filter').hide();
+        };
+
+        jQuery('[data-toggle="advanced-filter"]', subject).click(function() {
+            jQuery('.advanced-filter').toggle();
+        });
+    };
+
+}
