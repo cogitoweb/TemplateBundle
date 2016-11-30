@@ -5,6 +5,8 @@ twig:
     form:
         resources:
             - "SonataCoreBundle:Form:datepicker.html.twig"
+    globals:
+        ga_tracking: ~
 
 sonata_admin:
     options:
