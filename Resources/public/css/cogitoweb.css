@@ -43,14 +43,20 @@ body.loader .overlay {
 aside.left-side {
   min-height: calc(100vh - 50px) !important;
   height: auto !important;
-  position: relative;
-  overflow: scroll !important; }
+  position: relative; }
+
+aside.main-sidebar {
+  overflow: hidden; }
+  aside.main-sidebar .slimScrollDiv {
+    width: calc(100% + 17px) !important;
+    overflow-y: scroll !important; }
+    aside.main-sidebar .slimScrollDiv ::-webkit-scrollbar {
+      display: none; }
 
 section.sidebar {
   min-height: calc(100vh - 50px) !important;
   height: auto !important;
-  position: relative;
-  overflow: scroll !important; }
+  position: relative; }
 
 .sidebar-menu li > a > .fa-angle-left:before {
   content: "\f107"; }
@@ -64,9 +70,6 @@ section.sidebar {
 .main-sidebar .user-panel,
 .sidebar-menu > li.header {
   margin-bottom: 62px; }
-
-aside.main-sidebar .slimScrollDiv {
-  overflow: scroll !important; }
 
 section.sidebar .treeview-menu i {
   display: none; }
