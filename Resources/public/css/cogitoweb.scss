@@ -90,19 +90,37 @@ body.loader	.overlay { display  : block;  }
 
 // aside menu icons
 aside.left-side {
-	height: calc(100vh - 50px) !important;
+	min-height: calc(100vh - 50px) !important;
+	height: auto !important;
 	position: relative;
+	overflow: scroll !important;
 }
 
 section.sidebar {
-	height: calc(100vh - 50px) !important;
+	min-height: calc(100vh - 50px) !important;
+	height: auto !important;
 	position: relative;
+	overflow: scroll !important;
 }
-.sidebar-menu li.active > a > .fa-angle-down {
-	-webkit-transform: rotate(-180deg);
-	-ms-transform: rotate(-180deg);
-	-o-transform: rotate(-180deg);
-	transform: rotate(-180deg);
+.sidebar-menu li {
+	> a > .fa-angle-left:before {
+		content: "\f107";
+	}
+	&.active > a > .fa-angle-left {
+		-webkit-transform: rotate(-180deg);
+		-ms-transform: rotate(-180deg);
+		-o-transform: rotate(-180deg);
+		transform: rotate(-180deg);
+	}
+}
+.sidebar-menu,
+.main-sidebar .user-panel,
+.sidebar-menu>li.header {
+	margin-bottom: 62px;
+}
+
+aside.main-sidebar .slimScrollDiv {
+	overflow: scroll !important;
 }
 
 

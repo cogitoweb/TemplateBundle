@@ -3,50 +3,70 @@
  * 
  * To start the loader add class "loader" to body
  */
-body.loader          { overflow : hidden; }
-body.loader .overlay { display  : block;  }
+body.loader {
+  overflow: hidden; }
+
+body.loader .overlay {
+  display: block; }
 
 .overlay {
-	display          : none;
-	position         : fixed;
-	top              : 0;
-	right            : 0;
-	bottom           : 0;
-	left             : 0;
-	z-index          : 1050;
-	background-color : rgba(0, 0, 0, 0.3);
-}
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  background-color: rgba(0, 0, 0, 0.3); }
 
-.overlay .spinner {
-	position  : fixed;
-	top       : 50%;
-	left      : 50%;
-	transform : translate(-50%, -50%);
-	color     : white;
-}
-/* AJAX loader*/
+.spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white; }
 
+/* AJAX loader */
+/*
+ * Cogitoweb: bugfix select2
+ * 
+ * Google Chrome cannot append HTML validation error pop-ups to select2
+ * because select item is hidden and browser cannot focus on it.
+ */
 .sonata-ba-field .select2-container + select {
-    display : block !important;
-    width   : 0;
-    height  : 0;
-	opacity : 0;
-}
+  display: block !important;
+  width: 0;
+  height: 0;
+  opacity: 0; }
 
+/* bugfix select2 */
 aside.left-side {
-  height: calc(100vh - 50px) !important;
+  min-height: calc(100vh - 50px) !important;
+  height: auto !important;
   position: relative;
-}
+  overflow: scroll !important; }
 
 section.sidebar {
-  height: calc(100vh - 50px) !important;
-  position: relative; }
+  min-height: calc(100vh - 50px) !important;
+  height: auto !important;
+  position: relative;
+  overflow: scroll !important; }
 
-.sidebar-menu li.active > a > .fa-angle-down {
+.sidebar-menu li > a > .fa-angle-left:before {
+  content: "\f107"; }
+.sidebar-menu li.active > a > .fa-angle-left {
   -webkit-transform: rotate(-180deg);
   -ms-transform: rotate(-180deg);
   -o-transform: rotate(-180deg);
   transform: rotate(-180deg); }
+
+.sidebar-menu,
+.main-sidebar .user-panel,
+.sidebar-menu > li.header {
+  margin-bottom: 62px; }
+
+aside.main-sidebar .slimScrollDiv {
+  overflow: scroll !important; }
 
 section.sidebar .treeview-menu i {
   display: none; }
