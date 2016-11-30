@@ -24,6 +24,12 @@
 	{% endif %}
 {% endblock %}
 
+{% block meta_tags %}
+	{{ parent() }}
+
+	<link rel="icon" type="image/png" href="/favicon.png">
+{% endblock %}
+
 {# Disable search bar #}
 {% block sonata_sidebar_search %}{% endblock sonata_sidebar_search %}
 
