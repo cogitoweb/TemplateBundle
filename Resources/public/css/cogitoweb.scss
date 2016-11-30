@@ -93,14 +93,19 @@ aside.left-side {
 	min-height: calc(100vh - 50px) !important;
 	height: auto !important;
 	position: relative;
-	overflow: scroll !important;
+}
+aside.main-sidebar {
+	overflow: hidden;
+	.slimScrollDiv {
+		width: calc(100% + 17px) !important;
+		overflow-y: scroll !important;
+	}
 }
 
 section.sidebar {
 	min-height: calc(100vh - 50px) !important;
 	height: auto !important;
 	position: relative;
-	overflow: scroll !important;
 }
 .sidebar-menu li {
 	> a > .fa-angle-left:before {
@@ -117,10 +122,6 @@ section.sidebar {
 .main-sidebar .user-panel,
 .sidebar-menu>li.header {
 	margin-bottom: 62px;
-}
-
-aside.main-sidebar .slimScrollDiv {
-	overflow: scroll !important;
 }
 
 
