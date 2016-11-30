@@ -195,11 +195,26 @@ aside.left-side div.slimScrollDiv {
 	transition: all 0.35s;
 }
 
-.fa {
+.input-group-addon {
+	.fa {
+		margin-right: 0;
+	}
+}
+.fa, 
+.icon-space,
+table.table a .fa.icon-space,
+table.table a .fa-home.icon-space {
 	margin-right: 7px;
 }
 
-table.table a .fa, .navbar-left i.fa-home {
+.btn-icon-space {
+	padding-left: 0;
+	padding-right: 0;
+	text-align: center;
+}
+
+table.table a .fa,
+.navbar-left i.fa-home {
 	margin-right: 0;
 }
 
