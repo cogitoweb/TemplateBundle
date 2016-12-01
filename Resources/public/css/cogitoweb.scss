@@ -88,6 +88,21 @@ body.loader	.overlay { display  : block;  }
 // PAOLO ===================================================================
 // =========================================================================
 
+.main-header > .navbar {
+	max-height: 50px;
+	.navbar-left {
+		margin-left: 15px;
+		max-width: calc(100vw - 335px);
+		max-height: 50px;
+		overflow: hidden;
+	}
+	.navbar-custom-menu {
+		i.fa {
+			margin-right: 0;
+		}
+	}
+}
+
 // aside menu icons
 aside.left-side {
 	min-height: calc(100vh - 50px) !important;
@@ -117,6 +132,9 @@ section.sidebar {
 		-ms-transform: rotate(-180deg);
 		-o-transform: rotate(-180deg);
 		transform: rotate(-180deg);
+	}
+	> a > .fa.pull-right {
+		margin-right: 15px;
 	}
 }
 .sidebar-menu,
@@ -184,6 +202,7 @@ aside.left-side div.slimScrollDiv {
 	width: 100%;
 	position: absolute;
 	bottom: 5px;
+	padding-right: 17px;
 	a {
 		display: block;
 		height: 60px;
@@ -209,7 +228,7 @@ table.table a .fa-home.icon-space {
 	margin-right: 7px;
 }
 
-.btn-icon-space {
+.sonata-ba-list-field-action .btn-icon-space {
 	padding-left: 0;
 	padding-right: 0;
 	text-align: center;
@@ -278,7 +297,14 @@ aside .slimScrollBar {
 }
 
 @media (min-width: 768px) {
-	.navbar.navbar-default .dropdown.sonata-actions {
+	.navbar-right .dropdown-menu {
+		left: 0;
+		right: auto;
+	}
+	.navbar.navbar-default .navbar-nav:not(.no-dropdown) {
+		float: left !important;
+	}
+	.navbar.navbar-default .no-dropdown .dropdown.sonata-actions {
 		a.dropdown-toggle {
 			display: none;
 		}
@@ -289,7 +315,7 @@ aside .slimScrollBar {
 			display: block;
 			float: none;
 			min-width: auto;
-			padding: 15px 0;
+			padding: 22px 0 0 0;
 			margin: 0;
 			list-style-type: none;
 			font-size: 14px;
@@ -302,7 +328,11 @@ aside .slimScrollBar {
 			> li {
 				display: inline-block;
 				float: right;
-				margin-right: 20px;
+				margin-top: -7px;
+				&:not(:empty) {
+					margin-right: 20px;
+					padding: 0 0 15px 0;
+				}
 				> a {
 					display: inline;
 					padding: 0;

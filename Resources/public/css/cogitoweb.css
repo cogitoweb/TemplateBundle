@@ -40,6 +40,16 @@ body.loader .overlay {
   opacity: 0; }
 
 /* bugfix select2 */
+.main-header > .navbar {
+  max-height: 50px; }
+  .main-header > .navbar .navbar-left {
+    margin-left: 15px;
+    max-width: calc(100vw - 335px);
+    max-height: 50px;
+    overflow: hidden; }
+  .main-header > .navbar .navbar-custom-menu i.fa {
+    margin-right: 0; }
+
 aside.left-side {
   min-height: calc(100vh - 50px) !important;
   height: auto !important;
@@ -65,6 +75,8 @@ section.sidebar {
   -ms-transform: rotate(-180deg);
   -o-transform: rotate(-180deg);
   transform: rotate(-180deg); }
+.sidebar-menu li > a > .fa.pull-right {
+  margin-right: 15px; }
 
 .sidebar-menu,
 .main-sidebar .user-panel,
@@ -111,7 +123,8 @@ aside.left-side div.slimScrollDiv {
 .cogitoweb-logo {
   width: 100%;
   position: absolute;
-  bottom: 5px; }
+  bottom: 5px;
+  padding-right: 17px; }
   .cogitoweb-logo a {
     display: block;
     height: 60px;
@@ -131,7 +144,7 @@ table.table a .fa.icon-space,
 table.table a .fa-home.icon-space {
   margin-right: 7px; }
 
-.btn-icon-space {
+.sonata-ba-list-field-action .btn-icon-space {
   padding-left: 0;
   padding-right: 0;
   text-align: center; }
@@ -184,16 +197,23 @@ aside .slimScrollBar {
   top: 2px; }
 
 @media (min-width: 768px) {
-  .navbar.navbar-default .dropdown.sonata-actions a.dropdown-toggle {
+  .navbar-right .dropdown-menu {
+    left: 0;
+    right: auto; }
+
+  .navbar.navbar-default .navbar-nav:not(.no-dropdown) {
+    float: left !important; }
+
+  .navbar.navbar-default .no-dropdown .dropdown.sonata-actions a.dropdown-toggle {
     display: none; }
-  .navbar.navbar-default .dropdown.sonata-actions .dropdown-menu {
+  .navbar.navbar-default .no-dropdown .dropdown.sonata-actions .dropdown-menu {
     position: static;
     top: auto;
     left: auto;
     display: block;
     float: none;
     min-width: auto;
-    padding: 15px 0;
+    padding: 22px 0 0 0;
     margin: 0;
     list-style-type: none;
     font-size: 14px;
@@ -203,11 +223,14 @@ aside .slimScrollBar {
     -webkit-box-shadow: none;
     box-shadow: none;
     background-clip: border-box; }
-    .navbar.navbar-default .dropdown.sonata-actions .dropdown-menu > li {
+    .navbar.navbar-default .no-dropdown .dropdown.sonata-actions .dropdown-menu > li {
       display: inline-block;
       float: right;
-      margin-right: 20px; }
-      .navbar.navbar-default .dropdown.sonata-actions .dropdown-menu > li > a {
+      margin-top: -7px; }
+      .navbar.navbar-default .no-dropdown .dropdown.sonata-actions .dropdown-menu > li:not(:empty) {
+        margin-right: 20px;
+        padding: 0 0 15px 0; }
+      .navbar.navbar-default .no-dropdown .dropdown.sonata-actions .dropdown-menu > li > a {
         display: inline;
         padding: 0;
         clear: both;
@@ -215,8 +238,8 @@ aside .slimScrollBar {
         line-height: initial;
         color: #333;
         white-space: nowrap; }
-        .navbar.navbar-default .dropdown.sonata-actions .dropdown-menu > li > a:hover, .navbar.navbar-default .dropdown.sonata-actions .dropdown-menu > li > a:focus {
+        .navbar.navbar-default .no-dropdown .dropdown.sonata-actions .dropdown-menu > li > a:hover, .navbar.navbar-default .no-dropdown .dropdown.sonata-actions .dropdown-menu > li > a:focus {
           background: transparent;
           color: #777; }
-        .navbar.navbar-default .dropdown.sonata-actions .dropdown-menu > li > a .fa {
+        .navbar.navbar-default .no-dropdown .dropdown.sonata-actions .dropdown-menu > li > a .fa {
           margin-right: 5px; } }
