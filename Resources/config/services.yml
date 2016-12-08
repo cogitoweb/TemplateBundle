@@ -42,6 +42,12 @@ services:
         tags:
             - { name: form.type }
 
+    cogitoweb.template.form.type.time_picker:
+        class:     Cogitoweb\TemplateBundle\Form\Type\TimePickerType
+        arguments: [ "@sonata.core.date.moment_format_converter", "@translator", %time_pattern% ]
+        tags:
+            - { name: form.type }
+
     #
     # Custom smartfile spool for Swiftmailer
     #

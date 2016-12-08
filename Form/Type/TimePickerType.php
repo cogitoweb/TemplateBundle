@@ -9,36 +9,36 @@
 namespace Cogitoweb\TemplateBundle\Form\Type;
 
 use Sonata\CoreBundle\Date\MomentFormatConverter;
-use Sonata\CoreBundle\Form\Type\DatePickerType as SonataDatePickerType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Sonata\CoreBundle\Form\Type\DateTimePickerType as SonataDateTimePickerType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * Description of DatePickerType
+ * Description of TimePickerType
  *
  * @author Daniele Artico <daniele.artico@cogitoweb.it>
  */
-class DatePickerType extends SonataDatePickerType
+class TimePickerType extends SonataDateTimePickerType
 {
 	/**
 	 *
 	 * @var string
 	 */
-	protected $datePattern;
+	protected $timePattern;
 
 	/**
 	 * Constructor
 	 * 
-     * @param MomentFormatConverter    $formatConverter
+	 * @param MomentFormatConverter    $formatConverter
 	 * @param TranslatorInterface|null $translator
-	 * @param string|null              $datePattern
+	 * @param string|null              $timePattern
 	 */
-	public function __construct(MomentFormatConverter $formatConverter, TranslatorInterface $translator = null, $datePattern = null)
+	public function __construct(MomentFormatConverter $formatConverter, TranslatorInterface $translator = null, $timePattern = null)
 	{
 		parent::__construct($formatConverter, $translator);
 
-		$this->datePattern = $datePattern;
+		$this->timePattern = $timePattern;
 	}
 
 	/**
@@ -47,8 +47,16 @@ class DatePickerType extends SonataDatePickerType
 	public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults(array_merge($this->getCommonDefaults(), [
-            'dp_pick_time' => false,
-            'format'       => $this->datePattern ?: DateType::DEFAULT_FORMAT,
-        ]));
+			'dp_pick_date' => false,
+			'format'       => $this->timePattern ?: DateTimeType::DEFAULT_TIME_FORMAT,
+		]));
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getBlockPrefix()
+	{
+		return 'sonata_type_time_picker';
 	}
 }

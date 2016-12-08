@@ -4,7 +4,7 @@
 twig:
     form:
         resources:
-            - "SonataCoreBundle:Form:datepicker.html.twig"
+            - 'CogitowebTemplateBundle:Form:datepicker.html.twig'
     globals:
         ga_tracking: ~
 
@@ -19,6 +19,7 @@ sonata_core:
             type:
                 sonata_type_date_range_picker: Cogitoweb\TemplateBundle\Form\Type\DateRangePickerType
                 sonata_type_date_picker:       Cogitoweb\TemplateBundle\Form\Type\DatePickerType
+                sonata_type_time_picker:       Cogitoweb\TemplateBundle\Form\Type\TimePickerType
 
 doctrine:
     orm:
