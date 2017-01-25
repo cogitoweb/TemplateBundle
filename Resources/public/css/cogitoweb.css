@@ -68,15 +68,13 @@ section.sidebar {
   height: auto !important;
   position: relative; }
 
-.sidebar-menu li > a > .fa-angle-left:before {
+.sidebar-menu li > a > span > .fa-angle-left:before {
   content: "\f107"; }
-.sidebar-menu li.active > a > .fa-angle-left {
+.sidebar-menu li.active > a > span > .fa-angle-left {
   -webkit-transform: rotate(-180deg);
   -ms-transform: rotate(-180deg);
   -o-transform: rotate(-180deg);
   transform: rotate(-180deg); }
-.sidebar-menu li > a > .fa.pull-right {
-  margin-right: 15px; }
 
 .sidebar-menu,
 .main-sidebar .user-panel,
@@ -243,3 +241,5 @@ aside .slimScrollBar {
           color: #777; }
         .navbar.navbar-default .no-dropdown .dropdown.sonata-actions .dropdown-menu > li > a .fa {
           margin-right: 5px; } }
+
+/*# sourceMappingURL=cogitoweb.css.map */

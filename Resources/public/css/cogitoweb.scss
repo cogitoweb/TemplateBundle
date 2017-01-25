@@ -124,17 +124,14 @@ section.sidebar {
 	position: relative;
 }
 .sidebar-menu li {
-	> a > .fa-angle-left:before {
+	> a > span > .fa-angle-left:before {
 		content: "\f107";
 	}
-	&.active > a > .fa-angle-left {
+	&.active > a > span > .fa-angle-left {
 		-webkit-transform: rotate(-180deg);
 		-ms-transform: rotate(-180deg);
 		-o-transform: rotate(-180deg);
 		transform: rotate(-180deg);
-	}
-	> a > .fa.pull-right {
-		margin-right: 15px;
 	}
 }
 .sidebar-menu,
