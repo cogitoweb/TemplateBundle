@@ -61,3 +61,10 @@ services:
     cogitoweb.template.builder.datagrid:
         class:     Cogitoweb\TemplateBundle\Builder\DatagridBuilder
         arguments: [ "@form.factory", "@sonata.admin.builder.filter.factory", "@sonata.admin.guesser.orm_datagrid_chain", %form.type_extension.csrf.enabled% ]
+
+    #
+    # Navigator
+    #
+    cogitoweb.navigator:
+        class: Cogitoweb\TemplateBundle\Navigator\Navigator
+        arguments: [ "@doctrine.orm.entity_manager" ]

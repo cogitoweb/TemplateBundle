@@ -234,4 +234,18 @@ class AbstractAdmin extends CogitowebAbstractAdmin
 	{
 		return $this->getConfigurationPool()->getContainer()->get('doctrine.orm.entity_manager');
 	}
+
+	/**
+	 * Get Navigator service
+	 * 
+	 * @return Navigator
+	 */
+	public function getNavigator()
+	{
+		$navigator = $this->getConfigurationPool()->getContainer()->get('cogitoweb.navigator');
+
+		$navigator->setDatagrid($this->getDatagrid());
+
+		return $navigator;
+	}
 }
