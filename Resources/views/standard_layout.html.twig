@@ -71,6 +71,8 @@
 {% endblock %}
 
 {% block sonata_admin_content_actions_wrappers %}
+	{% include 'CogitowebTemplateBundle:Navigator:navigator.html.twig' %}
+
 	{% if _actions|replace({ '<li>': '', '</li>': '' })|trim is not empty %}
 		<ul class="nav navbar-nav navbar-right no-dropdown">
 		{% if _actions|split('</a>')|length > 2 %}
