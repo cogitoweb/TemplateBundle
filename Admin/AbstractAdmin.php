@@ -4,6 +4,7 @@ namespace Cogitoweb\TemplateBundle\Admin;
 
 use Cogitoweb\MultiLevelAdminBundle\Admin\AbstractAdmin as CogitowebAbstractAdmin;
 use Cogitoweb\TemplateBundle\Datagrid\ProxyQuery;
+use Cogitoweb\TemplateBundle\Navigator\Navigator;
 use Doctrine\ORM\EntityManagerInterface;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Route\RouteCollection;
@@ -244,7 +245,7 @@ class AbstractAdmin extends CogitowebAbstractAdmin
 	{
 		$navigator = $this->getConfigurationPool()->getContainer()->get('cogitoweb.navigator');
 
-		$navigator->setDatagrid($this->getDatagrid());
+		$navigator->setAdmin($this);
 
 		return $navigator;
 	}

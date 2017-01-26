@@ -8,7 +8,7 @@
 
 namespace Cogitoweb\TemplateBundle\Navigator;
 
-use Sonata\AdminBundle\Datagrid\DatagridInterface;
+use Sonata\AdminBundle\Admin\AdminInterface;
 
 /**
  * Description of Navigator
@@ -18,58 +18,97 @@ use Sonata\AdminBundle\Datagrid\DatagridInterface;
 class Navigator
 {
 	/**
-	 * Datagrid
+	 * Admin
 	 * 
-	 * @var DatagridInterface
+	 * @var AdminInterface
 	 */
-	protected $datagrid;
-
-	protected $entityManager;
-
-	public function __construct(\Doctrine\ORM\EntityManager $entityManager)
-	{
-		$this->entityManager = $entityManager;
-	}
+	protected $admin;
 
 	/**
-	 * Set datagrid
-	 * @param DatagridInterface $datagrid
+	 * Set admin
+	 * 
+	 * @param AdminInterface $admin
 	 */
-	public function setDatagrid(DatagridInterface $datagrid)
+	public function setAdmin(AdminInterface $admin)
 	{
-		$this->datagrid = $datagrid;
+		$this->admin = $admin;
 
 		return $this;
 	}
 
 	/**
-	 * Get datagrid
+	 * Get admin
 	 * 
-	 * @return DatagridInterface
+	 * @return AdminInterface
 	 */
-	public function getDatagrid()
+	public function getAdmin()
 	{
-		return $this->datagrid;
-	}
-
-	public function getPrevious() {
-		return $this->entityManager->find(\Application\LavAdr\CRUDBundle\Entity\Contratto::class, 25);
-	}
-
-	public function getCurrent() {
-		return $this->entityManager->find(\Application\LavAdr\CRUDBundle\Entity\Contratto::class, 26);
-	}
-
-	public function getNext() {
-		return $this->entityManager->find(\Application\LavAdr\CRUDBundle\Entity\Contratto::class, 27);
+		return $this->admin;
 	}
 
 	/**
-	 * Count
+	 * Get previous object
+	 * 
+	 * @return mixed
+	 */
+	public function getPrevious()
+	{
+		$results = $this->getAdmin()->getDatagrid()->getResults();
+
+		// Get 0-index position
+		$position = $this->getCurrent() - 1;
+
+		// Previous position
+		$position --;
+
+		return array_key_exists($position, $results) ? $results[$position] : null;
+	}
+
+	/**
+	 * Get current object
 	 * 
 	 * @return integer
 	 */
-	public function count() {
-		return count($this->getDatagrid()->getResults());
+	public function getCurrent()
+	{
+		$position = array_search(
+			$this->getAdmin()->getSubject(),
+			$this->getAdmin()->getDatagrid()->getResults()
+		);
+
+		if (false === $position) {
+			return null;
+		}
+
+		// Return 1-index position
+		return $position + 1;
+	}
+
+	/**
+	 * Count objects
+	 * 
+	 * @return integer
+	 */
+	public function count()
+	{
+		return count($this->getAdmin()->getDatagrid()->getResults());
+	}
+
+	/**
+	 * Get next object
+	 * 
+	 * @return mixed
+	 */
+	public function getNext()
+	{
+		$results  = $this->getAdmin()->getDatagrid()->getResults();
+
+		// Get 0-index position
+		$position = $this->getCurrent() - 1;
+
+		// Next position
+		$position ++;
+
+		return array_key_exists($position, $results) ? $results[$position] : null;
 	}
 }

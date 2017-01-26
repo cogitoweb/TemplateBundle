@@ -67,4 +67,3 @@ services:
     #
     cogitoweb.navigator:
         class: Cogitoweb\TemplateBundle\Navigator\Navigator
-        arguments: [ "@doctrine.orm.entity_manager" ]
