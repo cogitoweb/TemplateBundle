@@ -3,7 +3,6 @@
 namespace Cogitoweb\TemplateBundle\Admin;
 
 use Cogitoweb\MultiLevelAdminBundle\Admin\AbstractAdmin as CogitowebAbstractAdmin;
-use Cogitoweb\TemplateBundle\Datagrid\ProxyQuery;
 use Cogitoweb\TemplateBundle\Navigator\Navigator;
 use Doctrine\ORM\EntityManagerInterface;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
@@ -43,23 +42,6 @@ class AbstractAdmin extends CogitowebAbstractAdmin
 		if (method_exists($this->datagrid, 'setAddQueryResults')) {
 			$this->datagrid->setAddQueryResults($this->addQueryResults());
 		}
-	}
-
-	/**
-	 * Overridden method to use Cogitoweb's ProxyQuery.
-	 * See {@see Cogitoweb\TemplateBundle\Datagrid\ProxyQuery} for further informations.
-	 * 
-	 * @param  string $context
-	 * 
-	 * @return ProxyQueryInterface
-	 */
-	public function createQuery($context = 'list')
-	{
-		$originalProxyQuery  = parent::createQuery($context);
-		$queryBuilder        = $originalProxyQuery->getQueryBuilder();
-		$cogitowebProxyQuery = new ProxyQuery($queryBuilder);
-
-		return $cogitowebProxyQuery;
 	}
 
 	/**
