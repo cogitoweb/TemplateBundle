@@ -47,6 +47,16 @@ class Navigator
 	}
 
 	/**
+	 * Is available
+	 * 
+	 * @return boolean
+	 */
+	public function isAvailable()
+	{
+		return (boolean) $this->getCurrent();
+	}
+
+	/**
 	 * Get previous object
 	 * 
 	 * @return mixed
