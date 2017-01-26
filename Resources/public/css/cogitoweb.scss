@@ -9,28 +9,32 @@
  * 
  * To start the loader add class "loader" to body
  */
-body.loader          { overflow : hidden; }
-body.loader	.overlay { display  : block;  }
+body.loader {
+	overflow: hidden;
+}
+body.loader	.overlay {
+	display: block;
+}
 
 // Dark overlay
 .overlay {
-	display          : none;
-	position         : fixed;
-	top              : 0;
-	right            : 0;
-	bottom           : 0;
-	left             : 0;
-	z-index          : 1050;
-	background-color : rgba(0, 0, 0, 0.3);
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1050;
+	background-color: rgba(0, 0, 0, 0.3);
 }
 
 // Center spinner
 .spinner {
-	position  : fixed;
-	top       : 50%;
-	left      : 50%;
-	transform : translate(-50%, -50%);
-	color     : white;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
 }
 
 /* AJAX loader */
@@ -44,26 +48,13 @@ body.loader	.overlay { display  : block;  }
 
 // Replace display "none" with "block" and hide select by setting its dimensions to 0
 .sonata-ba-field .select2-container + select {
-    display : block !important;
-    width   : 0;
-    height  : 0;
-	opacity : 0;
+    display: block !important;
+    width: 0;
+    height: 0;
+	opacity: 0;
 }
 
 /* bugfix select2 */
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -217,7 +208,7 @@ aside.left-side div.slimScrollDiv {
 		margin-right: 0;
 	}
 }
-.fa, 
+.fa,
 .icon-space,
 table.table a .fa.icon-space,
 table.table a .fa-home.icon-space {
@@ -346,6 +337,45 @@ aside .slimScrollBar {
 					}
 				}
 			}
+		}
+	}
+}
+
+
+
+
+// =========================================================================
+// NAVIGATOR SECTION =======================================================
+// =========================================================================
+.navbar[role=navigation] {
+	.navbar-header {
+		display: none;
+	}
+}
+
+#navigator-block {
+	margin-left: 0;
+	display: inline-block;
+	> li {
+		padding: 15px 0 14px 0;
+		min-height: 48px;
+		> a {
+			padding: 0;
+			min-height: 0;
+			color: #333;
+			display: inline-block;
+			&:hover {
+				color: #777;
+			}
+		}
+		i.fa-angle-right {
+			margin-right: 0;
+			margin-left: 7px;
+		}
+		&.navigator-block-current {
+			padding-left: 15px;
+			padding-right: 15px;
+			font-weight: 700;
 		}
 	}
 }
