@@ -23,6 +23,8 @@ class CogitowebTemplateExtension extends Extension // implements PrependExtensio
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+		$container->setParameter('cogitoweb_template.navigator.enabled', $config['navigator']['enabled']);
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }

@@ -47,13 +47,29 @@ class Navigator
 	}
 
 	/**
+	 * Is enabled
+	 * 
+	 * @return boolean
+	 */
+	public function isEnabled()
+	{
+		$container = $this->getAdmin()->getConfigurationPool()->getContainer();
+
+		if ($container->hasParameter('cogitoweb_template.navigator.enabled')) {
+			return $container->getParameter('cogitoweb_template.navigator.enabled');
+		}
+
+		return true;
+	}
+
+	/**
 	 * Is available
 	 * 
 	 * @return boolean
 	 */
 	public function isAvailable()
 	{
-		return (boolean) $this->getCurrent();
+		return $this->isEnabled() && $this->getCurrent();
 	}
 
 	/**

@@ -23,6 +23,19 @@ class Configuration implements ConfigurationInterface
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
+		$rootNode
+			->children()
+				->arrayNode('navigator')
+				->addDefaultsIfNotSet()
+					->children()
+						->booleanNode('enabled')
+							->info       ('This option is used to enable or disable Navigator project-wide.')
+							->defaultTrue()
+						->end()
+					->end()
+				->end()
+			->end()
+		;
 
         return $treeBuilder;
     }
