@@ -1,6 +1,6 @@
 {# se la pagina rappresenta un'azione di edit o di show #}
 {% block navigator %}
-	{% if action in ['edit', 'show'] and admin.navigator.available %}
+	{% if action in ['edit', 'show'] and admin.navigator is defined and admin.navigator.available %}
 		<ul class="nav navbar-nav navbar-left no-dropdown" id="navigator-block">
 			{{ block('previous') }}
 			<li class="navigator-block-current">{{ admin.navigator.current }} / {{ admin.navigator.count }}</li>
