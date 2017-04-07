@@ -12,6 +12,9 @@ sonata_admin:
     options:
         form_type: horizontal
     show_mosaic_button: false
+    templates:
+        layout: 'CogitowebTemplateBundle::custom_standard_layout.html.twig'
+        show:   'CogitowebTemplateBundle:CRUD:custom_show.html.twig'
 
 sonata_core:
     form:
