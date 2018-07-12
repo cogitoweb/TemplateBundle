@@ -2,9 +2,8 @@
 # Enable Bootstrap date picker and custom form types with default date format
 #
 twig:
-    form:
-        resources:
-            - 'CogitowebTemplateBundle:Form:datepicker.html.twig'
+    form_themes:
+        - 'CogitowebTemplateBundle:Form:datepicker.html.twig'
     globals:
         ga_tracking: ~
 
