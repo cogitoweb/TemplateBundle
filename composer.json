@@ -16,7 +16,7 @@
 		}
 	],
 	"require"     : {
-		"cogitoweb/multi-level-admin-bundle" : "^3.10"
+		"cogitoweb/multi-level-admin-bundle" : "^3.0"
 	},
 	"autoload"    : {
 		"psr-4" : { "Cogitoweb\\TemplateBundle\\" : "" }
